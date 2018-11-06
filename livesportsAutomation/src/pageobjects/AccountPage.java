@@ -67,5 +67,8 @@ public class AccountPage {
 	@LinkType()
 	@FindBy(xpath = "//a[contains(@class, \"backToHome\")]")
 	public WebElement BACKTOHOME_Link;
+	@TextType()
+	@FindBy(name = "email")
+	public WebElement Email_Address_enter;
 			
 }
