@@ -1,0 +1,1595 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="6" registryId="03d5ff75-2600-434e-87d2-99346cb0d475">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="884" title="UI Connect: DAZN">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="privateBrowsingMode"/>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="878" title="Change language">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Change language</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="879">
+          <steps>
+            <caseCall testCaseId="d21686d8-2a53-4bd6-be45-50d127214a0b" testCasePath="tests/Reusable Functions/DAZN/Callable_DaznPage_change language en it.testcase" testItemId="890">
+              <arguments>
+                <argument id="reuseConnectionName_lang">
+                  <value class="value" valueClass="string">DAZN</value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="839" title="Test Data reading from excel">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Test Data reading from excel</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="840">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="841" title="Reading from Excel EN IT">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable"/>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="ExcelData" variableScope="Test">
+                  <cacheToken>D:\\Provar Project Task\\Cognizant\\Cognizant_POC\\templates\\TestData.xlsx;1537783235503</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="RowNumber"/>
+                    <apiParam name="SNo"/>
+                    <apiParam name="FirstName"/>
+                    <apiParam name="LastName"/>
+                    <apiParam name="Email"/>
+                    <apiParam name="Password"/>
+                    <apiParam name="CardNumber"/>
+                    <apiParam name="ExpDate"/>
+                    <apiParam name="ExpYear"/>
+                    <apiParam name="CVV"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="value" valueClass="string">templates/DaznAccount_Testdata.xlsx</workbookPath>
+                    <worksheetName class="value" valueClass="string">EN_IT</worksheetName>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" isTitleUpdated="true" name="ForEach" testItemId="685" title="Dazn Sign up for EN IT">
+      <tags/>
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="ExcelData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">DataRow</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="686">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="957" title="FirstName">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">FirstName</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <variable>
+                              <path element="DataRow"/>
+                              <path element="FirstName"/>
+                            </variable>
+                            <funcCall id="UniqueId">
+                              <argument id="length">
+                                <value class="value" valueClass="decimal">2</value>
+                              </argument>
+                              <argument id="format">
+                                <value class="value" valueClass="string">ALPHA</value>
+                              </argument>
+                            </funcCall>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="958" title="LastName">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">LastName</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <variable>
+                              <path element="DataRow"/>
+                              <path element="LastName"/>
+                            </variable>
+                            <funcCall id="UniqueId">
+                              <argument id="length">
+                                <value class="value" valueClass="decimal">2</value>
+                              </argument>
+                              <argument id="format">
+                                <value class="value" valueClass="string">ALPHA</value>
+                              </argument>
+                            </funcCall>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="959" title="Language">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">Language</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="DataRow"/>
+                          <path element="Language"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="960" title="AccountName">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">AccountName</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <variable>
+                              <path element="FirstName"/>
+                            </variable>
+                            <value valueClass="string"> </value>
+                            <variable>
+                              <path element="LastName"/>
+                            </variable>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="961" title="Email">
+              <tags/>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">Email</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">provarcogninizant+User</value>
+                            <funcCall id="UniqueId">
+                              <argument id="length">
+                                <value class="value" valueClass="decimal">4</value>
+                              </argument>
+                              <argument id="format">
+                                <value class="value" valueClass="string">ALPHANUMERIC</value>
+                              </argument>
+                            </funcCall>
+                            <value valueClass="string">@gmail.com</value>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="962" title="CardNumber">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">CardNumber</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="DataRow"/>
+                          <path element="CardNumber"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="963" title="Split: {CardNumber}=&gt; =&gt;Tokens">
+              <arguments>
+                <argument id="input">
+                  <value class="variable">
+                    <path element="CardNumber"/>
+                  </value>
+                </argument>
+                <argument id="separator">
+                  <value class="value" valueClass="string"> </value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Tokens</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Global</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="964" title="LastFourDigitCardNumber">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">LastFourDigitCardNumber</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="Tokens">
+                            <filter class="index">
+                              <index valueClass="decimal">3</index>
+                            </filter>
+                          </path>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Global</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="966" title="Write Data To SFDC Zuora Exceldata sheet">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Write Data To SFDC Zuora Exceldata sheet</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="967">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="965" title="Set Values: Var.LastFourDigitCardNumber">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Var.AccountName</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="AccountName"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Global</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Var.FirstName</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="FirstName"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Global</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Var.LastName</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="LastName"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Global</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Var.Email</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="Email"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Global</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Var.CardNumber</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="CardNumber"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Global</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Var.LastFourDigitCardNumber</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="LastFourDigitCardNumber"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Global</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <expectedExceptions/>
+                      <parameterValueSources/>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="969" title="Write: {Var}=&gt;templates/SFDC_ZUORA_DAZN_Testdata.xlsx">
+                      <arguments>
+                        <argument id="data">
+                          <value class="variable">
+                            <path element="Var"/>
+                          </value>
+                        </argument>
+                        <argument id="dataUrl">
+                          <value class="excelTarget" sheetWriteMode="Update">
+                            <workbookPath class="value" valueClass="string">templates/SFDC_ZUORA_DAZN_Testdata.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">SFDC</worksheetName>
+                          </value>
+                        </argument>
+                        <argument id="targetDescription">
+                          <value class="value" valueClass="string">templates/SFDC_ZUORA_DAZN_Testdata.xlsx</value>
+                        </argument>
+                        <argument id="updateValueRange"/>
+                        <argument id="updateColumnNames">
+                          <value class="value" valueClass="string">FirstRowOfRange</value>
+                        </argument>
+                        <argument id="updateMatchType">
+                          <value class="value" valueClass="string">Where</value>
+                        </argument>
+                        <argument id="updateMatchLocator">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="Status"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Use</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources/>
+                      <generatedParameters>
+                        <apiParam group="result" name="updateValueRange" title="Values Range">
+                          <summary>The range of cells that needs to updated. If nothing is specified entire sheet is targeted</summary>
+                          <type>
+                            <textType>
+                              <constraints>
+                                <valueConstraint name="disableTemplateEditor">true</valueConstraint>
+                              </constraints>
+                            </textType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" name="updateColumnNames" title="Column Names">
+                          <summary>Identifies where the column names are in the spreadsheet:</summary>
+                          <defaultValue>FirstRowOfRange</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">FirstRowOfRange:Across the first row|FirstColumnOfRange:Down the first column</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" internal="true" name="updateMatchType" title="">
+                          <summary/>
+                          <defaultValue>RowOrColNumber</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">RowOrColNumber:Match by Position|Where:Match on Condition|MatchColumns:Match by Columns</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" manuallyResolved="true" name="updateMatchLocator" title="Match Locator">
+                          <summary>Identifies which rows in the Range will be updated. \n It can either be a row number (where the first row = 1) or a filtering condition against one or more columns (e.g. {firstName = "Joe" and surname = "Bloggs"}.</summary>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="970" title="Write: {Var}=&gt;templates/SFDC_ZUORA_DAZN_Testdata.xlsx">
+                      <arguments>
+                        <argument id="data">
+                          <value class="variable">
+                            <path element="Var"/>
+                          </value>
+                        </argument>
+                        <argument id="dataUrl">
+                          <value class="excelTarget" sheetWriteMode="Update">
+                            <workbookPath class="value" valueClass="string">templates/SFDC_ZUORA_DAZN_Testdata.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">ZUORA</worksheetName>
+                          </value>
+                        </argument>
+                        <argument id="targetDescription">
+                          <value class="value" valueClass="string">templates/SFDC_ZUORA_DAZN_Testdata.xlsx</value>
+                        </argument>
+                        <argument id="updateValueRange"/>
+                        <argument id="updateColumnNames">
+                          <value class="value" valueClass="string">FirstRowOfRange</value>
+                        </argument>
+                        <argument id="updateMatchType">
+                          <value class="value" valueClass="string">Where</value>
+                        </argument>
+                        <argument id="updateMatchLocator">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="Status"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Use</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources/>
+                      <generatedParameters>
+                        <apiParam group="result" name="updateValueRange" title="Values Range">
+                          <summary>The range of cells that needs to updated. If nothing is specified entire sheet is targeted</summary>
+                          <type>
+                            <textType>
+                              <constraints>
+                                <valueConstraint name="disableTemplateEditor">true</valueConstraint>
+                              </constraints>
+                            </textType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" name="updateColumnNames" title="Column Names">
+                          <summary>Identifies where the column names are in the spreadsheet:</summary>
+                          <defaultValue>FirstRowOfRange</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">FirstRowOfRange:Across the first row|FirstColumnOfRange:Down the first column</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" internal="true" name="updateMatchType" title="">
+                          <summary/>
+                          <defaultValue>RowOrColNumber</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">RowOrColNumber:Match by Position|Where:Match on Condition|MatchColumns:Match by Columns</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" manuallyResolved="true" name="updateMatchLocator" title="Match Locator">
+                          <summary>Identifies which rows in the Range will be updated. \n It can either be a row number (where the first row = 1) or a filtering condition against one or more columns (e.g. {firstName = "Joe" and surname = "Bloggs"}.</summary>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="971" title="Write: {Var}=&gt;templates/SFDC_ZUORA_DAZN_Testdata.xlsx">
+                      <arguments>
+                        <argument id="data">
+                          <value class="variable">
+                            <path element="Var"/>
+                          </value>
+                        </argument>
+                        <argument id="dataUrl">
+                          <value class="excelTarget" sheetWriteMode="Update">
+                            <workbookPath class="value" valueClass="string">templates/SFDC_ZUORA_DAZN_Testdata.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">DAZN</worksheetName>
+                          </value>
+                        </argument>
+                        <argument id="targetDescription">
+                          <value class="value" valueClass="string">templates/SFDC_ZUORA_DAZN_Testdata.xlsx</value>
+                        </argument>
+                        <argument id="updateValueRange"/>
+                        <argument id="updateColumnNames">
+                          <value class="value" valueClass="string">FirstRowOfRange</value>
+                        </argument>
+                        <argument id="updateMatchType">
+                          <value class="value" valueClass="string">Where</value>
+                        </argument>
+                        <argument id="updateMatchLocator">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="Status"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Use</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources/>
+                      <generatedParameters>
+                        <apiParam group="result" name="updateValueRange" title="Values Range">
+                          <summary>The range of cells that needs to updated. If nothing is specified entire sheet is targeted</summary>
+                          <type>
+                            <textType>
+                              <constraints>
+                                <valueConstraint name="disableTemplateEditor">true</valueConstraint>
+                              </constraints>
+                            </textType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" name="updateColumnNames" title="Column Names">
+                          <summary>Identifies where the column names are in the spreadsheet:</summary>
+                          <defaultValue>FirstRowOfRange</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">FirstRowOfRange:Across the first row|FirstColumnOfRange:Down the first column</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" internal="true" name="updateMatchType" title="">
+                          <summary/>
+                          <defaultValue>RowOrColNumber</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">RowOrColNumber:Match by Position|Where:Match on Condition|MatchColumns:Match by Columns</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="result" manuallyResolved="true" name="updateMatchLocator" title="Match Locator">
+                          <summary>Identifies which rows in the Range will be updated. \n It can either be a row number (where the first row = 1) or a filtering condition against one or more columns (e.g. {firstName = "Joe" and surname = "Bloggs"}.</summary>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" isTitleUpdated="true" name="UiWithScreen" testItemId="870" title="Account Sign up DAZN">
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">DAZN</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.DAZNPage"/>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On DAZNPage page</value>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">IfNeccessary</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="uiTargetUrl"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="871">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="687" title="Account Signup &amp; Subscription creation">
+                      <tags/>
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Account Signup &amp; Subscription creation</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="688">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="692" title="Account Sign up">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Account Sign up</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="hidden" testItemId="693">
+                                  <steps>
+                                    <caseCall testCaseId="60782d36-bf1b-4de7-8772-589c028801d5" testCasePath="tests/Reusable Functions/DAZN/Callable_DaznPage_AccountCreation.testcase" testItemId="694">
+                                      <arguments>
+                                        <argument id="FirstName">
+                                          <value class="variable">
+                                            <path element="FirstName"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="LastName">
+                                          <value class="variable">
+                                            <path element="LastName"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="Email">
+                                          <value class="variable">
+                                            <path element="Email"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="Password">
+                                          <value class="variable">
+                                            <path element="DataRow"/>
+                                            <path element="Password"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="reuseConnectionName">
+                                          <value class="value" valueClass="string">DAZN</value>
+                                        </argument>
+                                      </arguments>
+                                    </caseCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="695" title="Payment Deatils">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Payment Deatils</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="hidden" testItemId="696">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="697" title="On PaymentPage page">
+                                      <arguments>
+                                        <argument id="uiConnectionName">
+                                          <value class="value" valueClass="string">DAZN</value>
+                                        </argument>
+                                        <argument id="target">
+                                          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.PaymentPage"/>
+                                        </argument>
+                                        <argument id="navigate">
+                                          <value class="value" valueClass="string">Dont</value>
+                                        </argument>
+                                        <argument id="targetDescription">
+                                          <value class="value" valueClass="string">On PaymentPage page</value>
+                                        </argument>
+                                        <argument id="windowSelection">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="windowSize">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="closeWindow"/>
+                                        <argument id="captureBefore">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="captureAfter">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="uiTargetUrl"/>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="698">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="874" title="UI Assert Credit Card">
+                                              <arguments>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="UI_Assert_CreditCard">
+                                                      <fieldLocator uri="ui:pageobject:field?field=UI_Assert_CreditCard&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="Contains">
+                                                          <value class="value" valueClass="string">Credit</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">uiAssertCreditCard</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">true</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="ui:wait:pageload?timeout=60"/>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                              <expectedExceptions/>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="700" title="Click the Click_ Credit_card">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=Click_Credit_card&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                                                </argument>
+                                                <argument id="hover">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">true</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Click the Click_ Credit_card</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                                <argument id="ieClickMethod">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                                                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="701" title="Set the Card Number to {DataRow.CardNumber}">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=CardNumber&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=set"/>
+                                                </argument>
+                                                <argument id="value">
+                                                  <value class="variable">
+                                                    <path element="DataRow"/>
+                                                    <path element="CardNumber"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="blur">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="pressEnter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="ui:wait:pageload?timeout=60"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Set the Card Number to {DataRow.CardNumber}</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="value" seq="10000" title="Value">
+                                                  <summary>The value to be populated.</summary>
+                                                  <type>
+                                                    <textType>
+                                                      <constraints>
+                                                        <valueConstraint name="mimeType">text/plain</valueConstraint>
+                                                      </constraints>
+                                                    </textType>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="blur" seq="10001" title="Tab off field">
+                                                  <summary>Whether the tab key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="pressEnter" seq="10002" title="Press Enter">
+                                                  <summary>Whether the Enter key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="702" title="Set the Exp Date to {DataRow.ExpDate}">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=ExpDate&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=set"/>
+                                                </argument>
+                                                <argument id="value">
+                                                  <value class="variable">
+                                                    <path element="DataRow"/>
+                                                    <path element="ExpDate"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="blur">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="pressEnter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Set the Exp Date to {DataRow.ExpDate}</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="value" seq="10000" title="Value">
+                                                  <summary>The value to be populated.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="boundedValues">0:Month|1:01|2:02|3:03|4:04|5:05|6:06|7:07|8:08|9:09|10|11|12</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="blur" seq="10001" title="Tab off field">
+                                                  <summary>Whether the tab key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="pressEnter" seq="10002" title="Press Enter">
+                                                  <summary>Whether the Enter key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="703" title="Set the Exp Year to {DataRow.ExpYear}">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=ExpYear&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=set"/>
+                                                </argument>
+                                                <argument id="value">
+                                                  <value class="variable">
+                                                    <path element="DataRow"/>
+                                                    <path element="ExpYear"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="blur">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="pressEnter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Set the Exp Year to {DataRow.ExpYear}</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="value" seq="10000" title="Value">
+                                                  <summary>The value to be populated.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="boundedValues">0:Year|2018|2019|2020|2021|2022|2023|2024|2025|2026|2027</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="blur" seq="10001" title="Tab off field">
+                                                  <summary>Whether the tab key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="pressEnter" seq="10002" title="Press Enter">
+                                                  <summary>Whether the Enter key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="704" title="Set the CVV to {DataRow.CVV}">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=CVV&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=set"/>
+                                                </argument>
+                                                <argument id="value">
+                                                  <value class="variable">
+                                                    <path element="DataRow"/>
+                                                    <path element="CVV"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="blur">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="pressEnter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Set the CVV to {DataRow.CVV}</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="value" seq="10000" title="Value">
+                                                  <summary>The value to be populated.</summary>
+                                                  <type>
+                                                    <textType>
+                                                      <constraints>
+                                                        <valueConstraint name="mimeType">text/plain</valueConstraint>
+                                                      </constraints>
+                                                    </textType>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="blur" seq="10001" title="Tab off field">
+                                                  <summary>Whether the tab key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="pressEnter" seq="10002" title="Press Enter">
+                                                  <summary>Whether the Enter key should be pressed after the value is populated.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="978" title="Click the Terms_of_use_checkbox">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=Terms_of_use_checkbox&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                                                </argument>
+                                                <argument id="hover">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="ui:wait:timed?seconds=1"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Click the Terms_of_use_checkbox</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                                <argument id="ieClickMethod">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                                                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="705" title="Click the S TARTSUBSCRIPTIONWITHOBLIGATIONTOPAYAFTERFREETRIAL">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=sTARTSUBSCRIPTIONWITHOBLIGATIONTOPAYAFTERFREETRIAL&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                                                </argument>
+                                                <argument id="hover">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Click the S TARTSUBSCRIPTIONWITHOBLIGATIONTOPAYAFTERFREETRIAL</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                                <argument id="ieClickMethod">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                                                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="706" title="AccessStartDate">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">AccessStartsDate</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="AccessStarts">
+                                                      <fieldLocator uri="ui:pageobject:field?field=AccessStarts&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="707" title="Free trial end date">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">FreeTrialEndDate</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Free_trial_end_date">
+                                                      <fieldLocator uri="ui:pageobject:field?field=Free_trial_end_date&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="708" title="First payment date">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">FirstPaymentDate</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="First_payment_date">
+                                                      <fieldLocator uri="ui:pageobject:field?field=First_payment_date&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="709" title="Price">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">Price</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiPageAssertion/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Price">
+                                                      <fieldLocator uri="ui:pageobject:field?field=Price&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="Contains">
+                                                          <value class="value" valueClass="string">9.99 EUR</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="710" title="Payment method">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">Paymentmethod</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Payment_method_">
+                                                      <fieldLocator uri="ui:pageobject:field?field=Payment_method_&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="711" title="Click the Start Watching">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=startWatching&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                                                </argument>
+                                                <argument id="hover">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="ui:wait:pageload?timeout=60"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Click the Start Watching</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                                <argument id="ieClickMethod">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                                                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="975" title="Click the Start Watching_ Banner">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:field?field=StartWatching_Banner&amp;pageId=pageobjects.PaymentPage"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Click the Start Watching_ Banner</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="ui:wait:pageload?timeout=60"/>
+                                                </argument>
+                                                <argument id="afterWait"/>
+                                                <argument id="autoRetry"/>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">true</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="ieClickMethod">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                                <argument id="hover"/>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                                                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="712" title="HomeMenu">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">HomeMenu</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="HomeMenu">
+                                                      <fieldLocator uri="ui:pageobject:field?field=HomeMenu&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None">
+                                                          <value class="value" valueClass="string">Home</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="713" title="SCHEDULETab">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">SCHEDULETab</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="SCHEDULETab">
+                                                      <fieldLocator uri="ui:pageobject:field?field=SCHEDULETab&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" caseInsensitive="true" comparisonType="None">
+                                                          <value class="value" valueClass="string">schedule</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="714" title="Menu">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">Menu</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Menu">
+                                                      <fieldLocator uri="ui:pageobject:field?field=Menu&amp;pageId=pageobjects.PaymentPage"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None">
+                                                          <value class="value" valueClass="string">MENU</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <caseCall testCaseId="32c02d71-9fdc-4cbb-8799-84bcac72c6c0" testCasePath="tests/Reusable Functions/DAZN/Callable_DaznPage_Signout.testcase" testItemId="889">
+                                              <arguments>
+                                                <argument id="reuseConnectionName_signout">
+                                                  <value class="value" valueClass="string">DAZN</value>
+                                                </argument>
+                                              </arguments>
+                                            </caseCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                      <generatedParameters>
+                                        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+                                          <type>
+                                            <textType/>
+                                          </type>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="uiTargetUrl" title="Web Page">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>
