@@ -993,7 +993,7 @@
                                                       <fieldLocator uri="ui:pageobject:field?field=Price&amp;pageId=pageobjects.PaymentPage"/>
                                                       <attributeAssertions>
                                                         <uiAttributeAssertion attributeName="value" comparisonType="Contains">
-                                                          <value class="value" valueClass="string">9.99 EUR</value>
+                                                          <value class="value" valueClass="string">9,99 EUR</value>
                                                         </uiAttributeAssertion>
                                                       </attributeAssertions>
                                                     </uiFieldAssertion>
