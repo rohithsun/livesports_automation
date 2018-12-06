@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testCase id="6" registryId="03d5ff75-2600-434e-87d2-99346cb0d475">
+<testCase id="5" registryId="03d5ff75-2600-434e-87d2-99346cb0d475">
   <summary/>
   <steps>
     <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="884" title="UI Connect: DAZN">
@@ -1557,6 +1557,88 @@
                                                 </argument>
                                               </arguments>
                                             </caseCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="979" title="On AccountPage page">
+                                              <tags>
+                                                <string>disabled</string>
+                                              </tags>
+                                              <arguments>
+                                                <argument id="target">
+                                                  <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.AccountPage"/>
+                                                </argument>
+                                                <argument id="navigate">
+                                                  <value class="value" valueClass="string">Dont</value>
+                                                </argument>
+                                                <argument id="targetDescription">
+                                                  <value class="value" valueClass="string">On AccountPage page</value>
+                                                </argument>
+                                                <argument id="uiConnectionName">
+                                                  <value class="value" valueClass="string">DAZN</value>
+                                                </argument>
+                                                <argument id="windowSelection">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                                <argument id="windowSize">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                                <argument id="closeWindow"/>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="uiTargetUrl"/>
+                                              </arguments>
+                                              <clauses>
+                                                <clause name="substeps" testItemId="980">
+                                                  <steps>
+                                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="982" title="Call the enterText method">
+                                                      <arguments>
+                                                        <argument id="locator">
+                                                          <value class="uiLocator" uri="ui:pageobject:method?operation=enterText&amp;pageId=pageobjects.AccountPage"/>
+                                                        </argument>
+                                                        <argument id="interaction">
+                                                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                                                        </argument>
+                                                        <argument id="interactionDescription">
+                                                          <value class="value" valueClass="string">Call the enterText method</value>
+                                                        </argument>
+                                                        <argument id="beforeWait"/>
+                                                        <argument id="afterWait"/>
+                                                        <argument id="autoRetry"/>
+                                                        <argument id="captureBefore">
+                                                          <value class="value" valueClass="string">false</value>
+                                                        </argument>
+                                                        <argument id="captureAfter">
+                                                          <value class="value" valueClass="string">false</value>
+                                                        </argument>
+                                                        <argument id="param_text"/>
+                                                        <argument id="param_fieldName"/>
+                                                      </arguments>
+                                                      <generatedParameters>
+                                                        <apiParam group="value" name="param_text" title="text">
+                                                          <type>
+                                                            <textType/>
+                                                          </type>
+                                                        </apiParam>
+                                                        <apiParam group="value" name="param_fieldName" seq="1" title="fieldName">
+                                                          <type>
+                                                            <textType/>
+                                                          </type>
+                                                        </apiParam>
+                                                      </generatedParameters>
+                                                    </apiCall>
+                                                  </steps>
+                                                </clause>
+                                              </clauses>
+                                              <generatedParameters>
+                                                <apiParam group="target" name="uiTargetUrl" title="Web Page">
+                                                  <type>
+                                                    <textType/>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
                                           </steps>
                                         </clause>
                                       </clauses>

@@ -2,6 +2,7 @@ package pageobjects;
 
 import java.util.List;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -44,6 +45,7 @@ public class AccountPage {
 	@TextType()
 	@FindBy(xpath = "(//div[contains(text(),'PAYMENT METHOD')]/following-sibling::div)[1]")
 	public WebElement PaymentMethodInformation;
+	@TextType()
 	@FindBy(xpath = "//div[contains(@class, \"MenuButton\")]//span[1]")
 	public WebElement Menu;
 	@LinkType()
@@ -67,8 +69,23 @@ public class AccountPage {
 	@LinkType()
 	@FindBy(xpath = "//a[contains(@class, \"backToHome\")]")
 	public WebElement BACKTOHOME_Link;
+	@FindBy(xpath = "//input[contains(@name, 'email')]")
 	@TextType()
-	@FindBy(name = "email")
 	public WebElement Email_Address_enter;
+	@TextType()
+	@FindBy(xpath = "//input[contains(@class, \"form-control\")]")
+	public WebElement EmailAddress_dd;
+	@TextType()
+	@FindBy(id = "emailvalidation")
+	public WebElement Invalid_Email_ErrorMsg;
+	@TextType()
+	@FindBy(id = "emailvalidation")
+	public WebElement Invalid_EmailAdd_Error;
+	@TextType()
+	@FindBy(id = "emailPwdValidation")
+	public WebElement Invalid_password_errormsg;
+	@TextType()
+	@FindBy(id = "emailvalidation")
+	public WebElement Invalid_Email_ErrorMsg1;
 			
 }
