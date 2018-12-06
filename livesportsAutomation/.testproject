@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <testProject selectedBrowserProviderDeviceName="Full Screen" selectedBrowserProviderName="Desktop" selectedEnvironment="SIT">
-  <title>livesports/.testproject</title>
+  <title>/livesports/.testproject</title>
   <configPath>config</configPath>
   <testsPath>tests</testsPath>
   <templatesPath>templates</templatesPath>
@@ -46,10 +46,16 @@
     </connectionClass>
     <connectionClass name="google">
       <connections>
-        <connection name="Gamil">
+        <connection name="GMAIL">
           <summary/>
           <connectionUrls>
-            <connectionUrl secureStorageNodeId="ff6f632b-397e-44e9-9399-29ecf1c97498" url="google:user=provarcogninizant@gmail.com;password={password};accessToken={accessToken};refreshToken={refreshToken};expiry=1538019084000"/>
+            <connectionUrl secureStorageNodeId="ff6f632b-397e-44e9-9399-29ecf1c97498" url="google:user=provarcogninizant@gmail.com;password={password};authenticationType=PASSWORD;accessToken={accessToken};refreshToken={refreshToken};expiry=1538019084000"/>
+          </connectionUrls>
+        </connection>
+        <connection name="Gmail_DAZN">
+          <summary>Gmail_DAZN</summary>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="1a9dbe3b-86dc-41f5-9bbd-50b250ead963" url="google:user=partnerqa.livesports@gmail.com;password={password};accessToken={accessToken};refreshToken={refreshToken};expiry=1544127093000"/>
           </connectionUrls>
         </connection>
       </connections>
