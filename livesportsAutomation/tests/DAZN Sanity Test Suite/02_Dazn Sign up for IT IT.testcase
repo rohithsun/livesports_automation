@@ -234,7 +234,11 @@
                       <namedValue name="value">
                         <value class="compound">
                           <parts>
-                            <value valueClass="string">provarcogninizant+User</value>
+                            <variable>
+                              <path element="DataRow"/>
+                              <path element="Email"/>
+                            </variable>
+                            <value valueClass="string">+User</value>
                             <funcCall id="UniqueId">
                               <argument id="length">
                                 <value class="value" valueClass="decimal">4</value>
