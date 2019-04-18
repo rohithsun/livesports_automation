@@ -1,11 +1,14 @@
 package pageobjects;
 
-import java.util.List;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.provar.core.testapi.annotations.*;
+import com.provar.core.testapi.annotations.ButtonType;
+import com.provar.core.testapi.annotations.FindByLabel;
+import com.provar.core.testapi.annotations.LinkType;
+import com.provar.core.testapi.annotations.Page;
+import com.provar.core.testapi.annotations.PageWait;
+import com.provar.core.testapi.annotations.TextType;
 
 @Page( title="DAZNPage"                                
      , summary=""
@@ -16,7 +19,7 @@ public class DAZNPage {
 
 	
 	@PageWait.Field(timeoutSeconds = 15)
-	@FindBy(xpath = "//button[@class='ButtonBase Button start chevron']")
+	@FindBy(xpath = "//a[contains(@href,'signup')]/span")
 	@ButtonType()
 	public WebElement startYourFreeMonthNow;
 	@PageWait.Field(timeoutSeconds = 10)
@@ -58,10 +61,24 @@ public class DAZNPage {
 	@FindBy(xpath = "//div[contains(@class, \"buttonWrapper\")]/div[1]/button")
 	public WebElement Confirm_SIGNOUT;
 	@LinkType()
-	@FindBy(xpath = "//p[1]//a")
+	@FindBy(xpath = "//a[contains(@href,'signin')]")
 	public WebElement SignIn_HomeLink;
 	@TextType()
-	@FindBy(name = "repeatEmail")
+	@FindBy(name = "emailConfirmation")
 	public WebElement Re_Enter_EmailAdd;
-			
+	@TextType()
+	@FindBy(xpath = "//div[contains(@class, \"submit\")]/button//span[2]")
+	public WebElement Dazn_accountSignInPage_OK_Banner;
+	@TextType()
+	@FindBy(xpath = "//div[@class='submit primary']//span[@class='buttonText']")
+	public WebElement DAZNPage_Visible_for_Users;
+	@LinkType()
+	@FindBy(xpath = "//a[normalize-space(.)='MENU']")
+	public WebElement Click_on_Menu_DE;
+	@LinkType()
+	@FindBy(linkText = "Sign Out")
+	public WebElement signOut_menu_DE;
+	@ButtonType()
+	@FindByLabel(label = "SIGN OUT")
+	public WebElement Confirm_SIGNOUT_DE; 
 }

@@ -36,5 +36,9 @@ public class UserDeviceRelList {
 		@VisualforceBy(componentXPath = "apex:column[3]")
 		public WebElement registrationDate1;
 	}
+
+	@TextType()
+	@FindBy(xpath = "//div[contains(@class, \"pbBody\")]")
+	public WebElement NodevicesMessage;
 	
 }
