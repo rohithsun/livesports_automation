@@ -1,0 +1,241 @@
+<html>
+<head>
+    <title>Card payments testing</title>
+    <link href="css/page.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.json-viewer.js"></script>
+    <link href="css/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+</head>
+<body class="content">
+    <div class="card-box">
+        <div id="autofill-buttons"></div>
+        <br />
+        <form method="POST" action="#handler" id="adyen-encrypted-form">
+            <fieldset>
+                <legend>Card Number</legend>
+                <input id="adyen-encrypted-form-number" type="text" size="20" autocomplete="off" data-encrypted-name="number" />
+				<br /><br />
+				<input type="button" onclick="FillInNumber(4111111111111111)" value="Fill in 4111111111111111" />
+            </fieldset>        
+            <fieldset>
+                <legend>Card Holder Name</legend>
+                <input id="adyen-encrypted-form-holderName" type="text" size="20" autocomplete="off" data-encrypted-name="holderName" />
+            </fieldset>
+            <fieldset>
+                <legend>Expiry</legend>
+                <select data-encrypted-name="expiryMonth"  id="adyen-encrypted-form-expiryMonth">
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                    <option value="9">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select> /
+                <select autocomplete="off" data-encrypted-name="expiryYear" id="adyen-encrypted-form-expiryYear">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+					<option value="2024">2024</option>
+					<option value="2025">2025</option>
+					<option value="2026">2026</option>
+					<option value="2027">2027</option>
+					<option value="2028">2028</option>
+					<option value="2029">2029</option>
+					<option value="2030">2030</option>
+                </select>
+                <input type="button" onclick="FillInExpiry(10, 2020)" value="10/2020" />
+                <input type="button" onclick="FillInExpiry(8, 2018)" value="8/2018" />
+            </fieldset>
+            <fieldset>
+                <legend>CVV/CVC</legend>
+                <input id="adyen-encrypted-form-cvc" type="text" size="4" maxlength="4" autocomplete="off" data-encrypted-name="cvc" id="adyen-encrypted-form-cvc"/>
+            </fieldset>        
+            
+            <input type="hidden" id="adyen-server-time" value="generate-this-server-side" data-encrypted-name="generationtime" />
+            
+            <div id="country-selections"></div>
+            <br />
+            <input type="checkbox" name="sendRequest" id="sendRequest" /><label for="sendRequest">Send request</label>
+            <input class="button-pay" type="button" onclick="RunCardPayments()" value="Run Card Payments" />
+        </form>
+    </div>
+    <div class="view">
+        <input type="button" onclick="$('#viewers').empty()" value="Clear" />
+        <fieldset>
+            <legend>Post data</legend>
+            <div id="viewers" />
+            
+        </fieldset>        
+    </div>
+</body>
+<script type="text/javascript">
+    var testCards = [
+		['4111-1111-1111-1111', 10, 2020, 737, 'CA'],
+        ['2223-5204-4356-0010', 03, 2030, 737, 'NL'],
+        ['2223-5204-4356-0010', 10, 2020, 737, 'NL'],
+
+        ['5500-0000-0000-0004', 03, 2030, 737, 'US'],
+        ['5500-0000-0000-0004', 10, 2020, 737, 'US'],
+
+        ['5577-0000-5577-0004', 03, 2030, 737, 'PL'],
+        ['5577-0000-5577-0004', 10, 2020, 737, 'PL'],
+
+        ['2223-0000-4841-0010', 03, 2030, 737, 'NL'],
+        ['2223-0000-4841-0010', 10, 2020, 737, 'NL'],
+    ];
+    var $autoFill = $('#autofill-buttons');
+    $(testCards).each((idx, el) => {        
+        $('<input />', {
+            class: "autofill-btn",
+            type: "button",
+            onClick: "FillIn('"+el[0]+"','JOHN DOE', "+el[1]+", "+el[2]+", "+el[3]+", '"+el[4]+"')",
+            value: "Fill in "+el[0]+" "+el[1]+"/"+el[2]+" "+el[3]+" ("+el[4]+")"
+        }).appendTo($autoFill);
+    });
+
+    var countryCodes = [
+        "US","NL","DE","AT","CH","IT","PL","CZ", "CA", "JP"
+    ];
+    var $countryCodes = $('#country-selections');
+    $(countryCodes).each((idx, el) => {
+        var input = $('<input/>', {
+            type:"radio",
+            class: "countrycode-selection",
+            value:el,
+            name:"billingCountry",
+            id: 'r_'+el,                        
+        });
+        if (idx === 0) input.attr('checked', true);
+        input.appendTo($countryCodes);
+        $('<label/>', {
+            for: 'r_'+el,
+            html: el
+        }).appendTo($countryCodes);
+    });
+</script>
+<script type="text/javascript" src="js/adyen.encrypt.nodom.min.js"></script>    
+<script type="text/javascript">
+    var cseInstance;
+    var requestNo = 1;
+    (function() {
+        $('#adyen-server-time').val(GetDateIso());
+
+        var key     = "10001|B74D942AB665C2B6F89F2F549C9599BBA4D8D37C44025E3ED2D2005605B76C365B1419E3BD512F3BA424018A0FF623A5B31D01E433737E3D9106E860CEA090E01072F1032782E075DAD1395A8450FC08993351408BA4F6F86CC91ED24643834BB81C979208679245C48123C306D5B96BB4216E4B0B6587E9F54528D3B798DC621919A463AAAB53A491299BE26E4BAA55C2C07107B6F3BFC50860A22FECEBFD352F39DCFB172017A5FDA9F57825DD32DC9C39CF2F51EDD0FD19D55B0C8FC3BD66A1EB07E2A03DAE7425BFAE993ACFF431D2B5F10E95AC5DB5E6C0E3EA441B50FFFD3D1CFD7B3A066E2E8FEBAD9B59C0AF0C746E3852A742E0152D85C70DCBF0D7"; 
+        //var key     = "10001|A36D1279E2D5144C4DF3A6397A861ED970EEA21E7FEADCA53134CDF17D4F0F01F6E2C146F76D2EF6E65071BFD206EC5DD47CD1EF1E1DDE5871A45F37D34B65721B378E4133B62E967A347553F38AEBB3FF9488A1A8D446177E3CA7D5208047FBD3357E71E7B953B6425741328591CC22D8CC725D22ACAAAE08C46BF86AEC8D809E469F75E550BDE964FFB596613BB6F5363BEEDC9E65D95264602E26DEA518455F1C805B280A784E860B5D63EDFB4701DAD3FAF27ECFD44449A210934D06894ECFCE36B1505B002CE065CA95E66AADD5DEBD93628DA91079F57C2BC3C691163E98940480532E7440AC13B389930AB9B8CC13B76E326CA9D11E7063537CDE057B"; 
+        
+        var options = {}; // See adyen.encrypt.nodom.html for details
+    
+        cseInstance = adyen.encrypt.createEncryption(key, options);
+        
+        // Enable behavior tracking on number and CVC fields
+        // Initiate before user interacts with the refeenced fields.
+        cseInstance.monitor( 'number', document.getElementById('adyen-encrypted-form-number') );
+        cseInstance.monitor( 'cvc', document.getElementById('adyen-encrypted-form-cvc') );
+    })();
+    function RunCardPayments() {
+
+        var sendRequest = $('#sendRequest').is(':checked');
+        var billingCountry = $('input[name=billingCountry]:checked').val();
+        var cardData = {
+            number : $('#adyen-encrypted-form-number').val(),
+            cvc : $('#adyen-encrypted-form-cvc').val(),
+            holderName : $('#adyen-encrypted-form-holderName').val(),
+            expiryMonth : $('#adyen-encrypted-form-expiryMonth').val(),
+            expiryYear :  $('#adyen-encrypted-form-expiryYear').val(),
+            generationtime : GetDateIso()
+        };
+        
+        var adyenEncryptedData = cseInstance.encrypt(cardData);
+                
+        var $fieldset = $('<fieldset class="fieldset-request"><legend>Request #' + (requestNo++) + ' @ ' + GetDateIso() + '</legend></fieldset>', {});
+        $fieldset.appendTo($('#viewers'))
+        
+        GetPreWithJsonViewerIn($fieldset, {
+            'billing-country': billingCountry,
+            'unencrypted-data' : cardData
+        }, {}, 'Payment data (unencrypted)');
+
+        var postData = {
+                "encryptedCard": adyenEncryptedData,
+                "countryCode": billingCountry,
+                "user": 'usrid_'+Math.trunc(Math.random()*10000000)
+        };
+
+        GetPreWithJsonViewerIn($fieldset, postData, {collapsed :true}, 'Post data');        
+
+        if (sendRequest) {
+            var settings = {
+                "async": true,
+                "crossDomain": false,
+                "url": "http://localhost:3000",
+                "method": "POST",
+                "headers": {
+                    "x-api-key": "AIzaSyCKLoehXmLpWV1lGbSZhYfEeVoGDLjSNoI",
+                    "Content-Type": "application/json"
+                },
+                "processData": false,
+                "data": JSON.stringify(postData)
+            }
+
+            $.ajax(settings).done(function (data, textStatus, jqXHR) {
+                GetPreWithJsonViewerIn($fieldset, {
+                    'jqXHR': jqXHR,
+                    'textStatus': textStatus,
+                    'data': data
+                }, {}, "Microservice response");
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                GetPreWithJsonViewerIn($fieldset, {
+                    'jqXHR': jqXHR,
+                    'textStatus': textStatus,
+                    'errorThrown': errorThrown
+                }, {}, 'Microservice request failure');
+            });
+        }
+    }
+    function GetPreWithJsonViewerIn($appendTo, jObject, options, legend) {
+        var preResponse = $("<pre/>", {});
+        var $fieldset = $('<fieldset><legend>'+legend+'</legend></fieldset>', {})
+        preResponse.appendTo($fieldset);
+        $fieldset.appendTo($appendTo);
+        preResponse.jsonViewer(jObject, $.extend({withQuotes:true}, options));
+        return preResponse;
+    }
+    function SetBillingCountry(billingCountry) {
+        $('.countrycode-selection').each((idx, element) => {
+            if ($(element).attr('value') === billingCountry){
+                $(element).prop("checked", true);
+            } else {
+                $(element).prop('checked', false);
+            }
+        });
+    }
+    function FillInExpiry(month, year) {
+        $('#adyen-encrypted-form-expiryMonth').val(month);
+        $('#adyen-encrypted-form-expiryYear').val(year);
+    }
+	function FillInNumber(number) {
+		$('#adyen-encrypted-form-number').val(number);
+	}
+    function FillIn(number, holderName, month, year, cvv, countryCode) {
+        $('#adyen-encrypted-form-number').val(number);
+        $('#adyen-encrypted-form-cvc').val(cvv);
+        $('#adyen-encrypted-form-holderName').val(holderName);
+        FillInExpiry(month, year);
+        SetBillingCountry(countryCode);
+    }   
+    function GetDateIso() {
+        var date = new Date(); // Or the date you'd like converted.
+        return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+    }
+    
+</script>
+</html>

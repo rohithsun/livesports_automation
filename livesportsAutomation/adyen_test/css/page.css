@@ -1,0 +1,43 @@
+.card-box {
+    float:left;
+    /*margin: 0 auto;*/
+    width: 24em;
+    padding: 1em;
+    border: 1px solid;
+    position:fixed;
+    background: linear-gradient(#eee, #ddd);
+}
+.card-box fieldset {
+    background: #bcbcbc;
+    margin-bottom: .7em;
+}
+.view {
+    margin-left: 27em;    
+}
+.button-pay {
+    width: 100%;
+    height: 3em;
+}        
+.fieldset-request {
+    margin-bottom: 1em;
+    background: linear-gradient(#e66465, #9198e5);
+}
+.fieldset-request fieldset {
+    background: #fff;
+    margin-bottom: .7em;
+}
+.autofill-btn {
+    text-align: left;
+    margin: .25em;
+    width: 100%;
+}
+.content fieldset {
+    position:relative;
+    padding-top:35px;
+}
+.content legend {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    position:absolute;
+    top:10px;
+    left:12px;
+}​
