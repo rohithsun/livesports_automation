@@ -1,0 +1,1797 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="352" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="10" title="Salesforce Connect: SalesforceOrg (Test)">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="6d79d749-92b1-40b6-a56f-b2022031883f" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="98" title="Split: {noofrecords}=&gt;,=&gt;noofrecords">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="noofrecords"/>
+          </value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">,</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">noofrecords</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="243" title="Set Values: CountryCode">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">CountryCode</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="Country"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Folder</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="244" title="Set Values: Batch">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">Batch</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="BatchNo"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Folder</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="173" title="If: {NewSignUp = &quot;yes&quot;}">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="NewSignUp"/>
+            </lhs>
+            <rhs class="value" valueClass="string">yes</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="174">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="102" title="Signup FreeTrial or Active Paid (with FE)">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Signup FreeTrial or Active Paid (with FE)</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="103">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="51" title="For Each: {noofrecords}=&gt;record">
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="noofrecords"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">record</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources/>
+                      <clauses>
+                        <clause name="substeps" testItemId="52">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="7" title="Email">
+                              <tags/>
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">Email</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <value valueClass="string">partnerqaautomation+</value>
+                                            <funcCall id="UniqueId">
+                                              <argument id="length">
+                                                <value class="value" valueClass="decimal">4</value>
+                                              </argument>
+                                              <argument id="format">
+                                                <value class="value" valueClass="string">NUMERIC</value>
+                                              </argument>
+                                            </funcCall>
+                                            <value valueClass="string">@gmail.com</value>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="87" title="FirstName">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">FirstName</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <value valueClass="string">AutoProv </value>
+                                            <funcCall id="UniqueId">
+                                              <argument id="length">
+                                                <value class="value" valueClass="decimal">2</value>
+                                              </argument>
+                                              <argument id="format">
+                                                <value class="value" valueClass="string">ALPHA</value>
+                                              </argument>
+                                            </funcCall>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="88" title="LastName">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">LastName</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <value valueClass="string">AutoPro </value>
+                                            <funcCall id="UniqueId">
+                                              <argument id="length">
+                                                <value class="value" valueClass="decimal">2</value>
+                                              </argument>
+                                              <argument id="format">
+                                                <value class="value" valueClass="string">ALPHA</value>
+                                              </argument>
+                                            </funcCall>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="172" title="AccountName">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">AccountName</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <variable>
+                                              <path element="FirstName"/>
+                                            </variable>
+                                            <value valueClass="string"> </value>
+                                            <variable>
+                                              <path element="LastName"/>
+                                            </variable>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="1" title="Web Connect: webservice">
+                              <arguments>
+                                <argument id="connectionName">
+                                  <value class="value" valueClass="string">webservice</value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">webservice</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" isTitleUpdated="true" name="RestRequest" testItemId="2" title="Sending Signup request to Massive">
+                              <arguments>
+                                <argument id="connectionName">
+                                  <value class="value" valueClass="string">webservice</value>
+                                </argument>
+                                <argument id="targetValue">
+                                  <value class="restTarget" uri="rest:untyped?method=POST&amp;bodyStyle=JSON"/>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">SignUpResponse</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                                <argument id="statusResultName">
+                                  <value class="value" valueClass="string">SignUpResponseStatus</value>
+                                </argument>
+                                <argument id="restResourceUrl">
+                                  <value class="value" valueClass="string">/misl/v4/SignUp</value>
+                                </argument>
+                                <argument id="restRequestHeader">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">Content-Type: application/json\nX-Forwarded-For: </value>
+                                      <variable>
+                                        <path element="VPN_IPAddress"/>
+                                      </variable>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="restBody">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">{\n"FirstName":"</value>
+                                      <variable>
+                                        <path element="FirstName"/>
+                                      </variable>
+                                      <value valueClass="string">",\n "LastName":"</value>
+                                      <variable>
+                                        <path element="LastName"/>
+                                      </variable>
+                                      <value valueClass="string">",\n "Email":"</value>
+                                      <variable>
+                                        <path element="Email"/>
+                                      </variable>
+                                      <value valueClass="string">",\n "Password":"12345",\n "AllowMarketingEmails": true,\n "LanguageCode": "en",\n "DeviceId": "test",\n "Platform": "web",\n "CampaignId":"testCampaign",\n "GiftCode":"testGiftCode",\n "ProfilingSessionId":"testProfilingSessionId13"\n}</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="restAttachments">
+                                  <value class="valueList" mutable="Mutable"/>
+                                </argument>
+                              </arguments>
+                              <generatedParameters>
+                                <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="body" name="restBody" title="Body">
+                                  <type>
+                                    <textType>
+                                      <constraints>
+                                        <valueConstraint name="mimeType">application/json</valueConstraint>
+                                      </constraints>
+                                    </textType>
+                                  </type>
+                                </apiParam>
+                                <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+                                  <childParams>
+                                    <apiParam name="name" title="Attachment Name"/>
+                                    <apiParam name="fileName" title="File Name"/>
+                                    <apiParam name="contentType" title="Content Type">
+                                      <type>
+                                        <choiceType>
+                                          <constraints>
+                                            <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                            <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                                          </constraints>
+                                        </choiceType>
+                                      </type>
+                                    </apiParam>
+                                    <apiParam name="data" title="Data">
+                                      <type>
+                                        <urlType/>
+                                      </type>
+                                    </apiParam>
+                                    <apiParam name="base64Encode" title="Encode As Base64">
+                                      <type>
+                                        <booleanType/>
+                                      </type>
+                                    </apiParam>
+                                  </childParams>
+                                </compoundApiParam>
+                              </generatedParameters>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="123" title="If: {SignUpResponseStatus.StatusCode != 200}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="ne">
+                                    <lhs class="variable">
+                                      <path element="SignUpResponseStatus"/>
+                                      <path element="StatusCode"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="decimal">200</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="124">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="125" title="Fail Test: SIGN UP RESPONSE IS NOT 200 OK">
+                                      <arguments>
+                                        <argument id="message">
+                                          <value class="value" valueClass="string">SIGN UP RESPONSE IS NOT 200 OK</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Sleep" name="Sleep" testItemId="9" title="Sleep for {5} seconds">
+                              <arguments>
+                                <argument id="sleepSecs">
+                                  <value class="value" valueClass="decimal">5</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="14" title="Set Values: AuthToken">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">AuthToken</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <value valueClass="string">Bearer </value>
+                                            <variable>
+                                              <path element="SignUpResponse"/>
+                                              <path element="AuthToken"/>
+                                              <path element="Token"/>
+                                            </variable>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">GroupStep</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" isTitleUpdated="true" name="RestRequest" testItemId="8" title="Sending subcription request to the sign up account">
+                              <arguments>
+                                <argument id="connectionName">
+                                  <value class="value" valueClass="string">webservice</value>
+                                </argument>
+                                <argument id="targetValue">
+                                  <value class="restTarget" uri="rest:untyped?method=POST&amp;bodyStyle=JSON"/>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">SubscribeResponse</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                                <argument id="statusResultName">
+                                  <value class="value" valueClass="string">SubscribeResponseStatus</value>
+                                </argument>
+                                <argument id="restResourceUrl">
+                                  <value class="value" valueClass="string">/misl/v5/Subscribe</value>
+                                </argument>
+                                <argument id="restRequestHeader">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">Content-Type: application/json\nAuthorization: </value>
+                                      <variable>
+                                        <path element="AuthToken"/>
+                                      </variable>
+                                      <value valueClass="string">\nX-Real-IP: </value>
+                                      <variable>
+                                        <path element="VPN_IPAddress"/>
+                                      </variable>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="restBody">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">{"Platform":"web","DeviceId":"0067B626D1","Manufacturer":"","OfferId":"Zuora_2c91a0fa6667f5820166770164102358_105067","BillingCountry":"</value>
+                                      <variable>
+                                        <path element="Country"/>
+                                      </variable>
+                                      <value valueClass="string">","GiftCode":null,"TermsAndConditionsAccepted":false,"PaymentMethod":{"PaymentCard":{"ZipCode":"","EncryptedCard":"adyenjs_0_1_21$PIrSbfmTU9+MqjmCjqDMALvzZK5XTntjGe0XG/SB67kCS7jxVyf1f81fcZeM1+sAUD7BE2nD2koKYpg02Pfzu3oN30ipTPkHBL6ZELBmQ1YlaEXCsnIEdMIOqIAQWQePYK/SwSjJ79ApTNi+BV38EmXjmGmhFrLMzUN/AQf5G3qgZjcKpORlrcxnhhlJBKgYmnJ8Iz/vdMhTYzubI9CiOH9FGYTWZS9n9twQ0mxURfNFhyHiNfLCuXldZF4zM2fA4QPRdgpkNQ31VZgoO7O/puS//MDySAc7cBLG+o5qFWz2SH5iQdVygZDkew22p+BbuWp8E8LY5g6hQ8zChbInng==$ArgvVkqPSXbK8+PWdAehmcLwRJPhfe4WxntjovfUco176QXkUzyDKALPGlHWJxJ68gm8bhtGVDUqpqolQ2RxGq/+AUBKfQpM1P30w3j8M7jK4DZnLxNPQTI2gZx6D7s6IQL505GC32A9knLCLrKV+8o2VEwL+bH38Pfus7KX547Xxv8thoiqvFf2NLPBtePOUcszYoUO8Cnc1G28G7ZKgxJ9kZIe0idM9dMvos8mIlgpdVkYMDwz0eyHmXhvZgAGmThVXNeYGqU2AeKdUOQGcNgNGIEhHX0iDaNBlUF+axxqvASzYxS4eYdNvoZBSPxZ3iWGw181bhFzBCy+AasIrnh7QG2oF9cn8ccZo0w6j++gI93c97oDWBYJ/b/N3RTgF5MiZ/WoEGaCGNXWmbldwk1D3zOIuvMN3YChAQhu+nb/IoAd1+3+TUwKPYAakCcw+hA47U2LGDPLalH5/ykabm7+27fJf6fuXenFaQV2GYtL+NjZAvFaRxty9Eak5P1hoV5QBjq4byxDVhIWznRpm7ubwFnJ04GmAteZN86EDj6cptwCwN6LraoKX0C8ZGS7RbFRCx6hoynP6rR30xnA7g=="}},"Version":"1.50.1"}</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="restAttachments">
+                                  <value class="valueList" mutable="Mutable"/>
+                                </argument>
+                              </arguments>
+                              <generatedParameters>
+                                <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="body" name="restBody" title="Body">
+                                  <type>
+                                    <textType>
+                                      <constraints>
+                                        <valueConstraint name="mimeType">application/json</valueConstraint>
+                                      </constraints>
+                                    </textType>
+                                  </type>
+                                </apiParam>
+                                <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+                                  <childParams>
+                                    <apiParam name="name" title="Attachment Name"/>
+                                    <apiParam name="fileName" title="File Name"/>
+                                    <apiParam name="contentType" title="Content Type">
+                                      <type>
+                                        <choiceType>
+                                          <constraints>
+                                            <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                            <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                                          </constraints>
+                                        </choiceType>
+                                      </type>
+                                    </apiParam>
+                                    <apiParam name="data" title="Data">
+                                      <type>
+                                        <urlType/>
+                                      </type>
+                                    </apiParam>
+                                    <apiParam name="base64Encode" title="Encode As Base64">
+                                      <type>
+                                        <booleanType/>
+                                      </type>
+                                    </apiParam>
+                                  </childParams>
+                                </compoundApiParam>
+                              </generatedParameters>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="129" title="If: {SubscribeResponseStatus.StatusCode != 200}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="ne">
+                                    <lhs class="variable">
+                                      <path element="SubscribeResponseStatus"/>
+                                      <path element="StatusCode"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="decimal">200</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="130">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="131" title="Fail Test: SUBSCRIBE RESPONSE IS NOT 200 OK">
+                                      <arguments>
+                                        <argument id="message">
+                                          <value class="value" valueClass="string">SUBSCRIBE RESPONSE IS NOT 200 OK</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="145" title="Set Values: Var.Email">
+                              <tags/>
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">Var.AccountName</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <variable>
+                                              <path element="FirstName"/>
+                                            </variable>
+                                            <value valueClass="string"> </value>
+                                            <variable>
+                                              <path element="LastName"/>
+                                            </variable>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">GroupStep</value>
+                                      </namedValue>
+                                    </namedValues>
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">Var.FirstName</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="FirstName"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">GroupStep</value>
+                                      </namedValue>
+                                    </namedValues>
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">Var.LastName</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="LastName"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">GroupStep</value>
+                                      </namedValue>
+                                    </namedValues>
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">Var.Email</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="Email"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">GroupStep</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <expectedExceptions/>
+                              <parameterValueSources/>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="144" title="Write: {Var}=&gt;Templates/common_prerequisite_data_{BatchNo}.xlsx">
+                              <tags/>
+                              <arguments>
+                                <argument id="data">
+                                  <value class="variable">
+                                    <path element="Var"/>
+                                  </value>
+                                </argument>
+                                <argument id="dataUrl">
+                                  <value class="excelTarget" debug="true" sheetWriteMode="Append">
+                                    <workbookPath class="compound">
+                                      <parts>
+                                        <value valueClass="string">Templates/common_prerequisite_data_</value>
+                                        <variable>
+                                          <path element="BatchNo"/>
+                                        </variable>
+                                        <value valueClass="string">.xlsx</value>
+                                      </parts>
+                                    </workbookPath>
+                                    <worksheetName class="variable">
+                                      <path element="Country"/>
+                                    </worksheetName>
+                                  </value>
+                                </argument>
+                                <argument id="targetDescription">
+                                  <value class="value" valueClass="string">Templates/common_prerequisite_data_{BatchNo}.xlsx</value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources/>
+                              <generatedParameters/>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="132" title="Write Email Data To Prerequisite Exceldata sheet">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Write Email Data To Prerequisite Exceldata sheet</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="133">
+                          <steps>
+                            <caseCall testCaseId="b49f2181-2de3-4875-9526-58a79d49f11d" testCasePath="tests/Reusable Functions/Salesforce/Callable_Reading_Email_CreateList.testcase" testItemId="149">
+                              <arguments>
+                                <argument id="Country">
+                                  <value class="variable">
+                                    <path element="Country"/>
+                                  </value>
+                                </argument>
+                                <argument id="BatchNo">
+                                  <value class="variable">
+                                    <path element="BatchNo"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="EmailIdlist">
+                                  <name class="value" valueClass="string">EmailIdlist</name>
+                                </outputArgument>
+                                <outputArgument id="SourceData">
+                                  <name class="variable">
+                                    <path element="SourceData"/>
+                                  </name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="134" title="SOQL Query: select Id from Account where PersonEmail IN {EmailIdlist}=&gt;AccountRows">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Id from Account where PersonEmail IN </value>
+                                      <variable>
+                                        <path element="EmailIdlist"/>
+                                      </variable>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">AccountRows</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="135" title="Wait For: {Count(noofrecords) = Count(AccountRows)}=&gt;{10}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="funcCall" id="Count">
+                                      <argument id="value">
+                                        <value class="variable">
+                                          <path element="noofrecords"/>
+                                        </value>
+                                      </argument>
+                                    </lhs>
+                                    <rhs class="funcCall" id="Count">
+                                      <argument id="value">
+                                        <value class="variable">
+                                          <path element="AccountRows"/>
+                                        </value>
+                                      </argument>
+                                    </rhs>
+                                  </value>
+                                </argument>
+                                <argument id="testAtStart"/>
+                                <argument id="maxIterations">
+                                  <value class="value" valueClass="decimal">100</value>
+                                </argument>
+                                <argument id="sleepSecs">
+                                  <value class="value" valueClass="decimal">10</value>
+                                </argument>
+                                <argument id="continueOnFailure">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="SourceData" variableScope="Test">
+                                  <cacheToken>D:/WS_JAN22_BKUP/livesports_automation-master/Templates/prerequisite_data.xlsx;1548964579772</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="TC_Status"/>
+                                    <apiParam name="AccountID"/>
+                                    <apiParam name="FirstName"/>
+                                    <apiParam name="LastName"/>
+                                    <apiParam name="AccountName"/>
+                                    <apiParam name="Email"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                    <workbookPath class="compound">
+                                      <parts>
+                                        <value valueClass="string">Templates/common_prerequisite_data_</value>
+                                        <variable>
+                                          <path element="BatchNo"/>
+                                        </variable>
+                                        <value valueClass="string">.xlsx</value>
+                                      </parts>
+                                    </workbookPath>
+                                    <worksheetName class="variable">
+                                      <path element="Country"/>
+                                    </worksheetName>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                              <clauses>
+                                <clause name="substeps" testItemId="136">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="137" title="SOQL Query: select Id from Account where PersonEmail IN {EmailIdlist}=&gt;AccountRows">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select Id from Account where PersonEmail IN </value>
+                                              <variable>
+                                                <path element="EmailIdlist"/>
+                                              </variable>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SalesforceOrg</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">AccountRows</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="158" title="If: {Count(AccountRows) = 0}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="funcCall" id="Count">
+                                      <argument id="value">
+                                        <value class="variable">
+                                          <path element="AccountRows"/>
+                                        </value>
+                                      </argument>
+                                    </lhs>
+                                    <rhs class="value" valueClass="decimal">0</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="159">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="160" title="Fail Test: Accounts NOT created in Salesforce, please check storage limit">
+                                      <arguments>
+                                        <argument id="message">
+                                          <value class="value" valueClass="string">Accounts NOT created in Salesforce, please check storage limit</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="150" title="For Each: {SourceData}=&gt;datarow">
+                              <tags/>
+                              <arguments>
+                                <argument id="list">
+                                  <value class="variable">
+                                    <path element="SourceData"/>
+                                  </value>
+                                </argument>
+                                <argument id="fromItem">
+                                  <value class="value" valueClass="decimal">1</value>
+                                </argument>
+                                <argument id="valueName">
+                                  <value class="value" valueClass="string">datarow</value>
+                                </argument>
+                                <argument id="continueOnFailure"/>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="SourceData" variableScope="Test">
+                                  <cacheToken>D:/WS_JAN22_BKUP/livesports_automation-master/Templates/prerequisite_data.xlsx;1548973088691</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="TC_Status"/>
+                                    <apiParam name="AccountID"/>
+                                    <apiParam name="FirstName"/>
+                                    <apiParam name="LastName"/>
+                                    <apiParam name="AccountName"/>
+                                    <apiParam name="Email"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                    <workbookPath class="compound">
+                                      <parts>
+                                        <value valueClass="string">Templates/common_prerequisite_data_</value>
+                                        <variable>
+                                          <path element="BatchNo"/>
+                                        </variable>
+                                        <value valueClass="string">.xlsx</value>
+                                      </parts>
+                                    </workbookPath>
+                                    <worksheetName class="variable">
+                                      <path element="Country"/>
+                                    </worksheetName>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                              <clauses>
+                                <clause name="substeps" testItemId="151">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="157" title="SOQL Query: select Id from Account where PersonEmail = '{datarow.Email}'=&gt;AccRows">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select Id from Account where PersonEmail = '</value>
+                                              <variable>
+                                                <path element="datarow"/>
+                                                <path element="Email"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SalesforceOrg</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">AccRows</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="142" title="Set Values: VarID.AccountID">
+                                      <tags/>
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">VarID.AccountID</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="variable">
+                                                  <path element="AccRows"/>
+                                                  <path element="Id"/>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">GroupStep</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <expectedExceptions/>
+                                      <parameterValueSources/>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="143" title="Write: {VarID}=&gt;Templates/common_prerequisite_data_{BatchNo}.xlsx">
+                                      <tags/>
+                                      <arguments>
+                                        <argument id="data">
+                                          <value class="variable">
+                                            <path element="VarID"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="dataUrl">
+                                          <value class="excelTarget" debug="true" sheetWriteMode="Update">
+                                            <workbookPath class="compound">
+                                              <parts>
+                                                <value valueClass="string">Templates/common_prerequisite_data_</value>
+                                                <variable>
+                                                  <path element="BatchNo"/>
+                                                </variable>
+                                                <value valueClass="string">.xlsx</value>
+                                              </parts>
+                                            </workbookPath>
+                                            <worksheetName class="variable">
+                                              <path element="Country"/>
+                                            </worksheetName>
+                                          </value>
+                                        </argument>
+                                        <argument id="targetDescription">
+                                          <value class="value" valueClass="string">Templates/common_prerequisite_data_{BatchNo}.xlsx</value>
+                                        </argument>
+                                        <argument id="updateValueRange"/>
+                                        <argument id="updateColumnNames">
+                                          <value class="value" valueClass="string">FirstRowOfRange</value>
+                                        </argument>
+                                        <argument id="updateMatchType">
+                                          <value class="value" valueClass="string">Where</value>
+                                        </argument>
+                                        <argument id="updateMatchLocator">
+                                          <value class="eq">
+                                            <lhs class="variable">
+                                              <path element="Email"/>
+                                            </lhs>
+                                            <rhs class="variable" topLevel="true">
+                                              <path element="datarow"/>
+                                              <path element="Email"/>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <parameterValueSources/>
+                                      <generatedParameters>
+                                        <apiParam group="result" name="updateValueRange" title="Values Range">
+                                          <summary>The range of cells that needs to updated. If nothing is specified entire sheet is targeted</summary>
+                                          <type>
+                                            <textType>
+                                              <constraints>
+                                                <valueConstraint name="disableTemplateEditor">true</valueConstraint>
+                                              </constraints>
+                                            </textType>
+                                          </type>
+                                        </apiParam>
+                                        <apiParam group="result" name="updateColumnNames" title="Column Names">
+                                          <summary>Identifies where the column names are in the spreadsheet:</summary>
+                                          <defaultValue>FirstRowOfRange</defaultValue>
+                                          <type>
+                                            <choiceType>
+                                              <constraints>
+                                                <valueConstraint name="boundedValues">FirstRowOfRange:Across the first row|FirstColumnOfRange:Down the first column</valueConstraint>
+                                              </constraints>
+                                            </choiceType>
+                                          </type>
+                                        </apiParam>
+                                        <apiParam group="result" internal="true" name="updateMatchType" title="">
+                                          <summary/>
+                                          <defaultValue>RowOrColNumber</defaultValue>
+                                          <type>
+                                            <choiceType>
+                                              <constraints>
+                                                <valueConstraint name="boundedValues">RowOrColNumber:Match by Position|Where:Match on Condition|MatchColumns:Match by Columns</valueConstraint>
+                                              </constraints>
+                                            </choiceType>
+                                          </type>
+                                        </apiParam>
+                                        <apiParam group="result" manuallyResolved="true" name="updateMatchLocator" title="Match Locator">
+                                          <summary>Identifies which rows in the Range will be updated. \n It can either be a row number (where the first row = 1) or a filtering condition against one or more columns (e.g. {firstName = "Joe" and surname = "Bloggs"}.</summary>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <caseCall testCaseId="28f99f81-ff03-482a-9dc9-0f49f5194d41" testCasePath="tests/Reusable Functions/Salesforce/Callable_Reading_AccountID_CreateList.testcase" testItemId="91">
+                              <tags/>
+                              <arguments>
+                                <argument id="Country">
+                                  <value class="variable">
+                                    <path element="Country"/>
+                                  </value>
+                                </argument>
+                                <argument id="BatchNo">
+                                  <value class="variable">
+                                    <path element="BatchNo"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="accountIdlist">
+                                  <name class="value" valueClass="string">accountIdlist</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="138" title="SOQL Query: select Zuora__CustomerAccount__c from Zuora__Subscription__c where Zuora__Account__c IN {accountIdlist}=&gt;ZuoraRows">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Zuora__CustomerAccount__c from Zuora__Subscription__c where Zuora__Account__c IN </value>
+                                      <variable>
+                                        <path element="accountIdlist"/>
+                                      </variable>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">ZuoraRows</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="139" title="Wait For: {Count(ZuoraRows) = Count(AccountRows)}=&gt;{10}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="funcCall" id="Count">
+                                      <argument id="value">
+                                        <value class="variable">
+                                          <path element="ZuoraRows"/>
+                                        </value>
+                                      </argument>
+                                    </lhs>
+                                    <rhs class="funcCall" id="Count">
+                                      <argument id="value">
+                                        <value class="variable">
+                                          <path element="AccountRows"/>
+                                        </value>
+                                      </argument>
+                                    </rhs>
+                                  </value>
+                                </argument>
+                                <argument id="testAtStart"/>
+                                <argument id="maxIterations">
+                                  <value class="value" valueClass="decimal">100</value>
+                                </argument>
+                                <argument id="sleepSecs">
+                                  <value class="value" valueClass="decimal">10</value>
+                                </argument>
+                                <argument id="continueOnFailure">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="140">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="141" title="SOQL Query: select Zuora__CustomerAccount__c from Zuora__Subscription__c where Zuora__Account__c IN {accountIdlist}=&gt;ZuoraRows">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select Zuora__CustomerAccount__c from Zuora__Subscription__c where Zuora__Account__c IN </value>
+                                              <variable>
+                                                <path element="accountIdlist"/>
+                                              </variable>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SalesforceOrg</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">ZuoraRows</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="167" title="If: {Count(ZuoraRows) = 0}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="funcCall" id="Count">
+                                      <argument id="value">
+                                        <value class="variable">
+                                          <path element="ZuoraRows"/>
+                                        </value>
+                                      </argument>
+                                    </lhs>
+                                    <rhs class="value" valueClass="decimal">0</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="168">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="169" title="Fail Test: Billing Account(s) NOT created in Zuora, please check for delay">
+                                      <arguments>
+                                        <argument id="message">
+                                          <value class="value" valueClass="string">Billing Account(s) NOT created in Zuora, please check for delay</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="31" title="Send On Demand Zuora Sync Call">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Send On Demand Zuora Sync Call</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="32">
+                  <steps>
+                    <caseCall testCaseId="663716a9-e089-4c85-8457-a12766508a3c" testCasePath="tests/Reusable Functions/Zuora/Callable_OnDemand_Zuora_Sync.testcase" testItemId="15">
+                      <arguments>
+                        <argument id="AccountID">
+                          <value class="variable">
+                            <path element="accountIdlist"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="99" title="Run Account Status Update Batch">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Run Account Status Update Batch</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="100">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="249" title="If: {BatchExecution = &quot;yes&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="BatchExecution"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">yes</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="250">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="254" title="Replace: {accountIdlist}=&gt;=&gt;batchaccidlist">
+                              <arguments>
+                                <argument id="input">
+                                  <value class="variable">
+                                    <path element="accountIdlist"/>
+                                  </value>
+                                </argument>
+                                <argument id="find">
+                                  <value class="value" valueClass="string">'</value>
+                                </argument>
+                                <argument id="replacement">
+                                  <value class="value" valueClass="string">\\'</value>
+                                </argument>
+                                <argument id="caseInsensitive"/>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">batchaccidlist</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <caseCall testCaseId="c51a1b99-fd27-466c-bad2-9f642bc5dae3" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_Account_Status_Change_BatchJob.testcase" testItemId="245">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="accountIdlist">
+                                  <value class="variable">
+                                    <path element="batchaccidlist"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="106" title="Updating Account Status Back To Excel/DB">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Updating Account Status Back To Excel/DB</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="107">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="109" title="For Each: {SourceData}=&gt;DataRow">
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="SourceData"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">DataRow</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData" variableScope="Test">
+                          <cacheToken>D:/WS_JAN22_BKUP/livesports_automation-master/Templates/prerequisite_data.xlsx;1548551777628</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TC_Status"/>
+                            <apiParam name="AccountID"/>
+                            <apiParam name="FirstName"/>
+                            <apiParam name="LastName"/>
+                            <apiParam name="AccountName"/>
+                            <apiParam name="Email"/>
+                            <apiParam name="AccountStatus"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="compound">
+                              <parts>
+                                <value valueClass="string">Templates/common_prerequisite_data_</value>
+                                <variable>
+                                  <path element="BatchNo"/>
+                                </variable>
+                                <value valueClass="string">.xlsx</value>
+                              </parts>
+                            </workbookPath>
+                            <worksheetName class="variable">
+                              <path element="Country"/>
+                            </worksheetName>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="substeps" testItemId="110">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="108" title="SOQL Query: select Account_Status__c from Account where PersonEmail = '{DataRow.Email}'=&gt;AccountRows">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Account_Status__c from Account where PersonEmail = '</value>
+                                      <variable>
+                                        <path element="DataRow"/>
+                                        <path element="Email"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">AccountRows</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="114" title="Wait For: {AccountRows.Account_Status__c != &quot;Partial&quot;}=&gt;{10}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="ne">
+                                    <lhs class="variable">
+                                      <path element="AccountRows"/>
+                                      <path element="Account_Status__c"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="string">Partial</rhs>
+                                  </value>
+                                </argument>
+                                <argument id="testAtStart"/>
+                                <argument id="maxIterations">
+                                  <value class="value" valueClass="decimal">50</value>
+                                </argument>
+                                <argument id="sleepSecs">
+                                  <value class="value" valueClass="decimal">10</value>
+                                </argument>
+                                <argument id="continueOnFailure">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="115">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="116" title="SOQL Query: select Account_Status__c from Account where PersonEmail = '{DataRow.Email}'=&gt;AccountRows">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select Account_Status__c from Account where PersonEmail = '</value>
+                                              <variable>
+                                                <path element="DataRow"/>
+                                                <path element="Email"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SalesforceOrg</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">AccountRows</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="117" title="If: {AccountRows.Account_Status__c = &quot;Partial&quot;}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="AccountRows"/>
+                                      <path element="Account_Status__c"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="string">Partial</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="118">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="251" title="If: {BatchExecution = &quot;yes&quot;}">
+                                      <arguments>
+                                        <argument id="condition">
+                                          <value class="eq">
+                                            <lhs class="variable">
+                                              <path element="BatchExecution"/>
+                                            </lhs>
+                                            <rhs class="value" valueClass="string">yes</rhs>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="then" testItemId="252">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="255" title="Replace: {accountIdlist}=&gt;=&gt;batchaccidlist">
+                                              <arguments>
+                                                <argument id="input">
+                                                  <value class="variable">
+                                                    <path element="accountIdlist"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="find">
+                                                  <value class="value" valueClass="string">'</value>
+                                                </argument>
+                                                <argument id="replacement">
+                                                  <value class="value" valueClass="string">\\'</value>
+                                                </argument>
+                                                <argument id="caseInsensitive"/>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">batchaccidlist</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                            <caseCall testCaseId="c51a1b99-fd27-466c-bad2-9f642bc5dae3" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_Account_Status_Change_BatchJob.testcase" testItemId="253">
+                                              <arguments>
+                                                <argument id="reuseConnectionName">
+                                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                                </argument>
+                                                <argument id="accountIdlist"/>
+                                              </arguments>
+                                            </caseCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="120" title="Wait For: {AccountRows.Account_Status__c != &quot;Partial&quot;}=&gt;{10}">
+                                      <arguments>
+                                        <argument id="condition">
+                                          <value class="ne">
+                                            <lhs class="variable">
+                                              <path element="AccountRows"/>
+                                              <path element="Account_Status__c"/>
+                                            </lhs>
+                                            <rhs class="value" valueClass="string">Partial</rhs>
+                                          </value>
+                                        </argument>
+                                        <argument id="testAtStart"/>
+                                        <argument id="maxIterations">
+                                          <value class="value" valueClass="decimal">50</value>
+                                        </argument>
+                                        <argument id="sleepSecs">
+                                          <value class="value" valueClass="decimal">10</value>
+                                        </argument>
+                                        <argument id="continueOnFailure">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="121">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="122" title="SOQL Query: select Account_Status__c from Account where PersonEmail = '{DataRow.Email}'=&gt;AccountRows">
+                                              <arguments>
+                                                <argument id="soqlQuery">
+                                                  <value class="compound">
+                                                    <parts>
+                                                      <value valueClass="string">select Account_Status__c from Account where PersonEmail = '</value>
+                                                      <variable>
+                                                        <path element="DataRow"/>
+                                                        <path element="Email"/>
+                                                      </variable>
+                                                      <value valueClass="string">'</value>
+                                                    </parts>
+                                                  </value>
+                                                </argument>
+                                                <argument id="apexConnectionName">
+                                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                                </argument>
+                                                <argument id="resultListName">
+                                                  <value class="value" valueClass="string">AccountRows</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="113" title="Set Values: Var.AccountStatus">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">Var.AccountStatus</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="AccountRows"/>
+                                          <path element="Account_Status__c"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="112" title="Write: {Var}=&gt;Templates/common_prerequisite_data_{BatchNo}.xlsx">
+                              <arguments>
+                                <argument id="data">
+                                  <value class="variable">
+                                    <path element="Var"/>
+                                  </value>
+                                </argument>
+                                <argument id="dataUrl">
+                                  <value class="excelTarget" sheetWriteMode="Update">
+                                    <workbookPath class="compound">
+                                      <parts>
+                                        <value valueClass="string">Templates/common_prerequisite_data_</value>
+                                        <variable>
+                                          <path element="BatchNo"/>
+                                        </variable>
+                                        <value valueClass="string">.xlsx</value>
+                                      </parts>
+                                    </workbookPath>
+                                    <worksheetName class="variable">
+                                      <path element="Country"/>
+                                    </worksheetName>
+                                  </value>
+                                </argument>
+                                <argument id="targetDescription">
+                                  <value class="value" valueClass="string">Templates/common_prerequisite_data_{BatchNo}.xlsx</value>
+                                </argument>
+                                <argument id="updateValueRange"/>
+                                <argument id="updateColumnNames">
+                                  <value class="value" valueClass="string">FirstRowOfRange</value>
+                                </argument>
+                                <argument id="updateMatchType">
+                                  <value class="value" valueClass="string">Where</value>
+                                </argument>
+                                <argument id="updateMatchLocator">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="Email"/>
+                                    </lhs>
+                                    <rhs class="variable" topLevel="true">
+                                      <path element="DataRow"/>
+                                      <path element="Email"/>
+                                    </rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <generatedParameters>
+                                <apiParam group="result" name="updateValueRange" title="Values Range">
+                                  <summary>The range of cells that needs to updated. If nothing is specified entire sheet is targeted</summary>
+                                  <type>
+                                    <textType>
+                                      <constraints>
+                                        <valueConstraint name="disableTemplateEditor">true</valueConstraint>
+                                      </constraints>
+                                    </textType>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="result" name="updateColumnNames" title="Column Names">
+                                  <summary>Identifies where the column names are in the spreadsheet:</summary>
+                                  <defaultValue>FirstRowOfRange</defaultValue>
+                                  <type>
+                                    <choiceType>
+                                      <constraints>
+                                        <valueConstraint name="boundedValues">FirstRowOfRange:Across the first row|FirstColumnOfRange:Down the first column</valueConstraint>
+                                      </constraints>
+                                    </choiceType>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="result" internal="true" name="updateMatchType" title="">
+                                  <summary/>
+                                  <defaultValue>RowOrColNumber</defaultValue>
+                                  <type>
+                                    <choiceType>
+                                      <constraints>
+                                        <valueConstraint name="boundedValues">RowOrColNumber:Match by Position|Where:Match on Condition|MatchColumns:Match by Columns</valueConstraint>
+                                      </constraints>
+                                    </choiceType>
+                                  </type>
+                                </apiParam>
+                                <apiParam group="result" manuallyResolved="true" name="updateMatchLocator" title="Match Locator">
+                                  <summary>Identifies which rows in the Range will be updated. \n It can either be a row number (where the first row = 1) or a filtering condition against one or more columns (e.g. {firstName = "Joe" and surname = "Bloggs"}.</summary>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="VPN_IPAddress" title="VPN_IPAddress">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="Country" title="Country">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="noofrecords" title="noofrecords">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="NewSignUp" title="NewSignUp">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="BatchNo" title="BatchNo">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:6d79d749-92b1-40b6-a56f-b2022031883f" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="BatchExecution" title="BatchExecution">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param defaultScope="Folder" name="CountryCode" title="CountryCode">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="CountryCode"/>
+      </sourceValue>
+    </param>
+    <param defaultScope="Folder" name="Batch" title="Batch">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="Batch"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="VPN_IPAddress">
+      <value class="value" valueClass="string">37.230.186.68</value>
+    </argument>
+    <argument id="Country">
+      <value class="value" valueClass="string">jp</value>
+    </argument>
+    <argument id="noofrecords">
+      <value class="value" valueClass="string">1,2,3,4,5</value>
+    </argument>
+    <argument id="NewSignUp">
+      <value class="value" valueClass="string">no</value>
+    </argument>
+    <argument id="BatchNo">
+      <value class="value" valueClass="string">BH01</value>
+    </argument>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseapi"/>
+      </value>
+    </argument>
+    <argument id="BatchExecution">
+      <value class="value" valueClass="string">no</value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="CountryCode" scope="Folder">
+      <name class="value" valueClass="string">CountryCode</name>
+    </outputArgument>
+    <outputArgument id="Batch" scope="Folder">
+      <name class="value" valueClass="string">Batch</name>
+    </outputArgument>
+  </outputArgs>
+  <parameterValueSources/>
+  <tags/>
+</testCase>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="1" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="28" title="Gmail Validation">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Gmail Validation</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="343">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="344" title="Salesforce Connect: SalesforceOrg (Test)">
+              <arguments>
+                <argument id="connectionName">
+                  <value class="value" valueClass="string">SalesforceOrg</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">SalesforceOrg</value>
+                </argument>
+                <argument id="reuseConnectionName"/>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="alreadyOpenBehaviour">
+                  <value class="value" valueClass="string">Fail</value>
+                </argument>
+                <argument id="uiApplicationName"/>
+                <argument id="closeAllPrimaryTabs">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="quickUiLogin">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="privateBrowsingMode"/>
+                <argument id="enableObjectIdLogging">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="autoCleanup"/>
+                <argument id="cleanupConnectionName"/>
+                <argument id="logFileLocation"/>
+                <argument id="username"/>
+                <argument id="password"/>
+                <argument id="securityToken"/>
+                <argument id="environment"/>
+                <argument id="lightningMode">
+                  <value class="value" valueClass="string">default</value>
+                </argument>
+                <argument id="webBrowser"/>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="215" title="SOQL Query: select Name , Status__c from Email_Sync_Queue__c where Person_Email__c ='{Email}' and Email_Name__c='Welcome Email'=&gt;Email_Sync_QueueRows">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Name , Status__c from Email_Sync_Queue__c where Person_Email__c ='</value>
+                      <variable>
+                        <path element="Email"/>
+                      </variable>
+                      <value valueClass="string">' and Email_Name__c='Welcome Email'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SalesforceOrg</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">Email_Sync_QueueRows</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="345" title="On SF Account page with pageobject Account">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="sf:ui:target?page=Account&amp;pageObject=pageobjects.Account"/>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Always</value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On SF Account page with pageobject Account</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="346">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="347" title="On SF Account (Person Account) View screen">
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">SalesforceOrg</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="sf:ui:target?object=Account&amp;action=View&amp;recordType=Person+Account&amp;noOverride=true"/>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">Embedded</value>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On SF Account (Person Account) View screen</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetObjectId"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="348">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" isTitleUpdated="true" name="UiWithRow" testItemId="349" title="Find row with Welcome Email with Email Sync Queue Table">
+                      <arguments>
+                        <argument id="uiConnectionName">
+                          <value class="value" valueClass="string">SalesforceOrg</value>
+                        </argument>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="sf:ui:locator:row?table=View%2FEmail_Sync_Queues__r%2FEmail_Sync_Queues__rTable"/>
+                        </argument>
+                        <argument id="uiRowLocator">
+                          <value class="and">
+                            <lhs class="eq">
+                              <lhs class="variable">
+                                <path element="Email_Name__c"/>
+                              </lhs>
+                              <rhs class="value" valueClass="string">Welcome Email</rhs>
+                            </lhs>
+                            <rhs class="eq">
+                              <lhs class="variable">
+                                <path element="Dispatch_ID__c"/>
+                              </lhs>
+                              <rhs class="value" valueClass="string">4,999,611</rhs>
+                            </rhs>
+                          </value>
+                        </argument>
+                        <argument id="locatorDescription">
+                          <value class="value" valueClass="string">With Email_Sync_Queues__r rows {Email_Name__c = "Welcome Email" AND Dispatch_ID__c = "4,999,611"}</value>
+                        </argument>
+                        <argument id="failIfNotFound">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                        <argument id="debugRowLocator"/>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Row</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Local</value>
+                        </argument>
+                        <argument id="autoPaginate"/>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="350">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" name="UiAssert" testItemId="351" title="UI Assert">
+                              <arguments>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">EmailStatus</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                                <argument id="fieldAssertions">
+                                  <value class="valueList" mutable="Mutable">
+                                    <uiFieldAssertion resultName="Email_Name__c">
+                                      <fieldLocator uri="ui:locator?name=Email_Name__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DEmail_Name__c%26relationship%3DEmail_Sync_Queues__r"/>
+                                      <attributeAssertions>
+                                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                                          <value class="value" valueClass="string">Welcome Email</value>
+                                        </uiAttributeAssertion>
+                                      </attributeAssertions>
+                                    </uiFieldAssertion>
+                                    <uiFieldAssertion resultName="Status__c">
+                                      <fieldLocator uri="ui:locator?name=Status__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DStatus__c%26relationship%3DEmail_Sync_Queues__r"/>
+                                      <attributeAssertions>
+                                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                                      </attributeAssertions>
+                                    </uiFieldAssertion>
+                                  </value>
+                                </argument>
+                                <argument id="captureAfter">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="columnAssertions">
+                                  <value class="valueList" mutable="Mutable"/>
+                                </argument>
+                                <argument id="pageAssertions">
+                                  <value class="valueList" mutable="Mutable"/>
+                                </argument>
+                                <argument id="beforeWait"/>
+                                <argument id="autoRetry"/>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                      <generatedParameters>
+                        <apiParam group="options" name="autoPaginate" title="Auto Paginate">
+                          <summary>Whether Show More/Next is clicked till the match condition succeeds.</summary>
+                          <type>
+                            <booleanType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="352" title="Wait For: {EmailStatus.fields.Status__c.value = &quot;Completed&quot;}=&gt;{30}">
+                      <tags/>
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="EmailStatus"/>
+                              <path element="fields"/>
+                              <path element="Status__c"/>
+                              <path element="value"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Completed</rhs>
+                          </value>
+                        </argument>
+                        <argument id="testAtStart">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                        <argument id="maxIterations">
+                          <value class="value" valueClass="decimal">10</value>
+                        </argument>
+                        <argument id="sleepSecs">
+                          <value class="value" valueClass="decimal">30</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="353">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiNavigate" name="UiNavigate" testItemId="354" title="Navigate: Refresh">
+                              <arguments>
+                                <argument id="navigate">
+                                  <value class="value" valueClass="string">Refresh</value>
+                                </argument>
+                                <argument id="captureBefore">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="captureAfter">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" name="UiWithRow" testItemId="355" title="With Email_Sync_Queues__r rows {NAME = $Email_Sync_QueueRows.Name}">
+                              <tags>
+                                <string>disabled</string>
+                              </tags>
+                              <arguments>
+                                <argument id="uiConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="locator">
+                                  <value class="uiLocator" uri="sf:ui:locator:row?table=View%2FEmail_Sync_Queues__r%2FEmail_Sync_Queues__rTable"/>
+                                </argument>
+                                <argument id="uiRowLocator">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="NAME"/>
+                                    </lhs>
+                                    <rhs class="variable" topLevel="true">
+                                      <path element="Email_Sync_QueueRows"/>
+                                      <path element="Name"/>
+                                    </rhs>
+                                  </value>
+                                </argument>
+                                <argument id="locatorDescription">
+                                  <value class="value" valueClass="string">With Email_Sync_Queues__r rows {NAME = $Email_Sync_QueueRows.Name}</value>
+                                </argument>
+                                <argument id="failIfNotFound">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="debugRowLocator">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">Row</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Local</value>
+                                </argument>
+                                <argument id="autoPaginate"/>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="356">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" name="UiAssert" testItemId="357" title="UI Assert">
+                                      <arguments>
+                                        <argument id="resultName">
+                                          <value class="value" valueClass="string">EmailStatus</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                        <argument id="fieldAssertions">
+                                          <value class="valueList" mutable="Mutable">
+                                            <uiFieldAssertion resultName="Status__c">
+                                              <fieldLocator uri="ui:locator?name=Status__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DStatus__c%26relationship%3DEmail_Sync_Queues__r"/>
+                                              <attributeAssertions>
+                                                <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                                              </attributeAssertions>
+                                            </uiFieldAssertion>
+                                          </value>
+                                        </argument>
+                                        <argument id="captureAfter">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="columnAssertions">
+                                          <value class="valueList" mutable="Mutable"/>
+                                        </argument>
+                                        <argument id="pageAssertions">
+                                          <value class="valueList" mutable="Mutable"/>
+                                        </argument>
+                                        <argument id="beforeWait"/>
+                                        <argument id="autoRetry"/>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                              <generatedParameters>
+                                <apiParam group="options" name="autoPaginate" title="Auto Paginate">
+                                  <summary>Whether Show More/Next is clicked till the match condition succeeds.</summary>
+                                  <type>
+                                    <booleanType/>
+                                  </type>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="358" title="On SF Account (Person Account) View screen">
+                              <arguments>
+                                <argument id="uiConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="target">
+                                  <value class="uiTarget" uri="sf:ui:target?object=Account&amp;action=View&amp;recordType=Person+Account&amp;noOverride=true"/>
+                                </argument>
+                                <argument id="navigate">
+                                  <value class="value" valueClass="string">Embedded</value>
+                                </argument>
+                                <argument id="targetDescription">
+                                  <value class="value" valueClass="string">On SF Account (Person Account) View screen</value>
+                                </argument>
+                                <argument id="windowSelection">
+                                  <value class="value" valueClass="string">Default</value>
+                                </argument>
+                                <argument id="windowSize">
+                                  <value class="value" valueClass="string">Default</value>
+                                </argument>
+                                <argument id="closeWindow"/>
+                                <argument id="captureBefore">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="captureAfter">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="sfUiTargetObjectId"/>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="359">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" isTitleUpdated="true" name="UiWithRow" testItemId="360" title="Find row with Welcome Email with Email Sync Queue Table">
+                                      <arguments>
+                                        <argument id="uiConnectionName">
+                                          <value class="value" valueClass="string">SalesforceOrg</value>
+                                        </argument>
+                                        <argument id="locator">
+                                          <value class="uiLocator" uri="sf:ui:locator:row?table=View%2FEmail_Sync_Queues__r%2FEmail_Sync_Queues__rTable"/>
+                                        </argument>
+                                        <argument id="uiRowLocator">
+                                          <value class="and">
+                                            <lhs class="eq">
+                                              <lhs class="variable">
+                                                <path element="Email_Name__c"/>
+                                              </lhs>
+                                              <rhs class="value" valueClass="string">Welcome Email</rhs>
+                                            </lhs>
+                                            <rhs class="eq">
+                                              <lhs class="variable">
+                                                <path element="Dispatch_ID__c"/>
+                                              </lhs>
+                                              <rhs class="value" valueClass="string">4,999,611</rhs>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                        <argument id="locatorDescription">
+                                          <value class="value" valueClass="string">With Email_Sync_Queues__r rows {Email_Name__c = "Welcome Email" AND Dispatch_ID__c = "4,999,611"}</value>
+                                        </argument>
+                                        <argument id="failIfNotFound">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                        <argument id="debugRowLocator"/>
+                                        <argument id="resultName">
+                                          <value class="value" valueClass="string">Row</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Local</value>
+                                        </argument>
+                                        <argument id="autoPaginate"/>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="361">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" name="UiAssert" testItemId="362" title="UI Assert">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">EmailStatus</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Status__c">
+                                                      <fieldLocator uri="ui:locator?name=Status__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3DAccount%26field%3DStatus__c%26relationship%3DEmail_Sync_Queues__r"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="None" normalize="true">
+                                                          <value class="value" valueClass="string">Welcome Email</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                      <generatedParameters>
+                                        <apiParam group="options" name="autoPaginate" title="Auto Paginate">
+                                          <summary>Whether Show More/Next is clicked till the match condition succeeds.</summary>
+                                          <type>
+                                            <booleanType/>
+                                          </type>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                              <generatedParameters>
+                                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:391f06fa-c4e0-4d95-a231-cc8b07955c8a" name="sourceConnectionName" title="Source Connection">
+      <summary>The pre-configured connection.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">false</valueConstraint>
+            <valueConstraint name="requiredCapabilities">subscribe</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="sourceConnectionName">
+      <value class="variable">
+        <path element="Gmail_DAZN"/>
+      </value>
+    </argument>
+  </args>
+  <tags/>
+</testCase>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="23">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="372" title="For Each: {SourceData}=&gt;DataRow">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">DataRow</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData" variableScope="Test">
+          <cacheToken>D:\\WS_FEB04\\livesports_automation-master\\Templates\\common_prerequisite_data.xlsx;1549325457153</cacheToken>
+          <cachedParameters>
+            <apiParam name="TC_Status"/>
+            <apiParam name="AccountID"/>
+            <apiParam name="FirstName"/>
+            <apiParam name="LastName"/>
+            <apiParam name="AccountName"/>
+            <apiParam name="Email"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo" whereName="TC_Status" whereValue="TC_01_Sign_Up">
+            <workbookPath class="compound">
+              <parts>
+                <value valueClass="string">Templates/common_prerequisite_data_</value>
+                <variable>
+                  <path element="BatchNo"/>
+                </variable>
+                <value valueClass="string">.xlsx</value>
+              </parts>
+            </workbookPath>
+            <worksheetName class="variable">
+              <path element="CountryCode"/>
+            </worksheetName>
+            <valuesRange class="value"/>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="substeps" testItemId="83">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="84" title="If: {Count(DataRow) &gt; 0}">
+              <arguments>
+                <argument id="condition">
+                  <value class="gt">
+                    <lhs class="funcCall" id="Count">
+                      <argument id="value">
+                        <value class="variable">
+                          <path element="DataRow"/>
+                        </value>
+                      </argument>
+                    </lhs>
+                    <rhs class="value" valueClass="decimal">0</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="85">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="91" title="Set Values: AccountName">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Email</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="DataRow"/>
+                                  <path element="Email"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Password</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">p12345</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">AccountName</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="DataRow"/>
+                                  <path element="AccountName"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="373" title="SF Global Search\n">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">SF Global Search\n</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="374">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="375" title="Salesforce Connect: SalesforceOrg (Test)">
+                              <arguments>
+                                <argument id="connectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="reuseConnectionName"/>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                                <argument id="alreadyOpenBehaviour">
+                                  <value class="value" valueClass="string">Reopen</value>
+                                </argument>
+                                <argument id="uiApplicationName"/>
+                                <argument id="closeAllPrimaryTabs">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="quickUiLogin">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="privateBrowsingMode"/>
+                                <argument id="enableObjectIdLogging">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="autoCleanup"/>
+                                <argument id="cleanupConnectionName"/>
+                                <argument id="logFileLocation"/>
+                                <argument id="username"/>
+                                <argument id="password"/>
+                                <argument id="securityToken"/>
+                                <argument id="environment"/>
+                                <argument id="lightningMode">
+                                  <value class="value" valueClass="string">default</value>
+                                </argument>
+                                <argument id="webBrowser"/>
+                              </arguments>
+                            </apiCall>
+                            <caseCall testCaseId="25aea228-8d7f-4520-b454-3a0534201e30" testCasePath="tests/Reusable Functions/Salesforce/Callable_Account_Search_Select_Verify.testcase" testItemId="376">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="AccountName">
+                                  <value class="variable">
+                                    <path element="AccountName"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="377" title="Verify Free Trial Status">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Verify Free Trial Status</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="378">
+                          <steps>
+                            <caseCall testCaseId="b78d8f33-0684-4bfc-9cb0-caef904eceef" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_AccountPage_Accinfo_Subscription.testcase" testItemId="379">
+                              <tags/>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="AccountName">
+                                  <value class="variable">
+                                    <path element="AccountName"/>
+                                  </value>
+                                </argument>
+                                <argument id="AccountEmail">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="c51a1b99-fd27-466c-bad2-9f642bc5dae3" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_Account_Status_Change_BatchJob.testcase" testItemId="380">
+                              <tags>
+                                <string>disabled</string>
+                              </tags>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="529f3cde-28ac-4513-9eea-d6fc7ce5c46e" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_AccountPage_Accinfo_FreeTrial_StatusCheck.testcase" testItemId="381">
+                              <tags/>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="AccountName">
+                                  <value class="variable">
+                                    <path element="AccountName"/>
+                                  </value>
+                                </argument>
+                                <argument id="AccountEmail">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="382" title="Subscription Status\n">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Subscription Status\n</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="383">
+                          <steps>
+                            <caseCall testCaseId="57d04a9a-f6d0-4377-800f-1245c63109f9" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_AccountPage_RelList_Subscription_verify.testcase" testItemId="384">
+                              <tags/>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SalesforceOrg</value>
+                                </argument>
+                                <argument id="SubscriptionStatus">
+                                  <value class="value" valueClass="string">Active</value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <caseCall testCaseId="8d0dfc20-7e86-441c-822e-b126316d26c7" testCasePath="tests/Development/Rohith/Callable_Record_Update.testcase" testItemId="385">
+                      <arguments>
+                        <argument id="RecordStatus">
+                          <value class="value" valueClass="string">Used</value>
+                        </argument>
+                        <argument id="CountryCode">
+                          <value class="variable">
+                            <path element="CountryCode"/>
+                          </value>
+                        </argument>
+                        <argument id="RecordEmail">
+                          <value class="variable">
+                            <path element="DataRow"/>
+                            <path element="Email"/>
+                          </value>
+                        </argument>
+                        <argument id="BatchNo">
+                          <value class="variable">
+                            <path element="BatchNo"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="used" scope="Folder">
+                          <name class="value" valueClass="string">used</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="386"/>
+                  </steps>
+                </clause>
+                <clause name="else" testItemId="89">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="90" title="Fail Test: Test Data Not Found">
+                      <arguments>
+                        <argument id="message">
+                          <value class="value" valueClass="string">Test Data Not Found</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="CountryCode" title="CountryCode">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="BatchNo" title="BatchNo">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="CountryCode">
+      <value class="variable">
+        <path element="CountryCode"/>
+      </value>
+    </argument>
+    <argument id="BatchNo">
+      <value class="variable">
+        <path element="Batch"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

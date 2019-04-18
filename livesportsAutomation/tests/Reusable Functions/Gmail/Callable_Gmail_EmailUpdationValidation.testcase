@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="16" registryId="410a739a-2a8e-4d23-b001-b79c89e1bd8f" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="138" title="UI Connect: DAZN">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SeleniumConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="privateBrowsingMode"/>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <caseCall testCaseId="6e0a6c9d-d59a-42c8-b8cd-3beddf1596c0" testCasePath="tests/Reusable Functions/Gmail/Callable_Gmail_init_Subscribe_Test.testcase" testItemId="139"/>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="140" title="Wait For: {GmailSubscription.messageCount &gt; 0}=&gt;{10}">
+      <tags/>
+      <arguments>
+        <argument id="condition">
+          <value class="gt">
+            <lhs class="variable">
+              <path element="GmailSubscription"/>
+              <path element="messageCount"/>
+            </lhs>
+            <rhs class="value" valueClass="decimal">0</rhs>
+          </value>
+        </argument>
+        <argument id="testAtStart">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="maxIterations">
+          <value class="value" valueClass="decimal">25</value>
+        </argument>
+        <argument id="sleepSecs">
+          <value class="value" valueClass="decimal">10</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="67">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="141" title="Set Values: BodyHtml">
+      <tags/>
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">BodyHtml</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="GmailSubscription"/>
+                  <path element="messages"/>
+                  <path element="bodyHtml"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Match" name="Match" testItemId="142" title="Match: {BodyText}=&gt;\\&lt;(.*?)\\&gt;=&gt;URL">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="BodyText"/>
+          </value>
+        </argument>
+        <argument id="regex">
+          <value class="value" valueClass="string">\\&lt;(.*?)\\&gt;</value>
+        </argument>
+        <argument id="caseInsensitive">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">URL</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="143" title="Split: {BodyHtml}=&gt;a href=&gt;Tokens">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="BodyHtml"/>
+          </value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">a href</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Tokens</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="144" title="Split: {URL[6]}=&gt;&quot;=&gt;URL">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="URL">
+              <filter class="index">
+                <index valueClass="decimal">5</index>
+              </filter>
+            </path>
+          </value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">"</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">URL</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="145" title="Split: {Tokens[6]}=&gt;&quot;=&gt;URL">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="Tokens">
+              <filter class="index">
+                <index valueClass="decimal">5</index>
+              </filter>
+            </path>
+          </value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">"</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">URL</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="150" title="If: {GmailSubscription.message.subject = &quot;Thanks for joining DAZN&quot;}">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="GmailSubscription"/>
+              <path element="message"/>
+              <path element="subject"/>
+            </lhs>
+            <rhs class="value" valueClass="string">Thanks for joining DAZN</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="97">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="101" title="Assert: {BodyText} Contains Hey">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="variable">
+                    <path element="BodyText"/>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="value" valueClass="string">Hey</value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">Contains</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage"/>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="106" title="UI Connect: DAZN">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="connectionName">
+                  <value class="value" valueClass="string">DAZN</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">gmail_link</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="reuseConnectionName"/>
+                <argument id="privateBrowsingMode"/>
+                <argument id="webBrowser"/>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="107" title="For Each: {URL}=&gt;linkrow">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="list">
+                  <value class="variable">
+                    <path element="URL"/>
+                  </value>
+                </argument>
+                <argument id="fromItem">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="valueName">
+                  <value class="value" valueClass="string">linkrow</value>
+                </argument>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="90">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" isTitleUpdated="true" name="UiWithScreen" testItemId="93" title="Gmail_Validation">
+                      <tags>
+                        <string>disabled</string>
+                      </tags>
+                      <arguments>
+                        <argument id="uiConnectionName">
+                          <value class="value" valueClass="string">gmail_link</value>
+                        </argument>
+                        <argument id="target">
+                          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.DAZNPage"/>
+                        </argument>
+                        <argument id="targetDescription">
+                          <value class="value" valueClass="string">On DAZNPage page</value>
+                        </argument>
+                        <argument id="navigate">
+                          <value class="value" valueClass="string">Always</value>
+                        </argument>
+                        <argument id="windowSelection">
+                          <value class="value" valueClass="string">Default</value>
+                        </argument>
+                        <argument id="windowSize">
+                          <value class="value" valueClass="string">Default</value>
+                        </argument>
+                        <argument id="closeWindow"/>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">full</value>
+                        </argument>
+                        <argument id="uiTargetUrl">
+                          <value class="variable">
+                            <path element="URL">
+                              <filter class="index">
+                                <index valueClass="decimal">0</index>
+                              </filter>
+                            </path>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="94"/>
+                      </clauses>
+                      <generatedParameters>
+                        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+          <tags>
+            <string>disabled</string>
+          </tags>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="151" title="Set Values: PrivacyText">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">TermsLink</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="URL">
+                    <filter class="index">
+                      <index valueClass="decimal">65</index>
+                    </filter>
+                  </path>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">TermsText</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="URL">
+                    <filter class="index">
+                      <index valueClass="decimal">68</index>
+                    </filter>
+                  </path>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">PrivacyLink</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="URL">
+                    <filter class="index">
+                      <index valueClass="decimal">71</index>
+                    </filter>
+                  </path>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">PrivacyText</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="URL">
+                    <filter class="index">
+                      <index valueClass="decimal">74</index>
+                    </filter>
+                  </path>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="152" title="Assert: {TermsText} Contains Terms of Use">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="variable">
+            <path element="TermsText"/>
+          </value>
+        </argument>
+        <argument id="actualValue">
+          <value class="value" valueClass="string">Terms of Use</value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">Contains</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="153" title="UI Connect: DAZN">
+      <tags/>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument argId="c44f30a5-31f2-48b2-8164-0ff4f22bcd20" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" isTitleUpdated="true" name="UiWithScreen" testItemId="154" title="Gmail_Validation">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.DAZNPage"/>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On DAZNPage page</value>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Always</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">full</value>
+        </argument>
+        <argument id="uiTargetUrl">
+          <value class="value" valueClass="string">https://my.dazn.com/help/JP-en_GB/terms</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="96">
+          <steps/>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="166" title="On Dazn_help_termsPage page">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.Dazn_help_termsPage"/>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Dont</value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On Dazn_help_termsPage page</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="uiTargetUrl"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="167">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" name="UiAssert" testItemId="168" title="UI Assert">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Values</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiPageAssertion/>
+                  </value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="Dazn_help_termsPage_Terms_of_Use_Lable">
+                      <fieldLocator uri="ui:pageobject:field?field=Dazn_help_termsPage_Terms_of_Use_Lable&amp;pageId=pageobjects.Dazn_help_termsPage"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="visible" comparisonType="EqualTo">
+                          <value class="value" valueClass="boolean">true</value>
+                        </uiAttributeAssertion>
+                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" mutable="Mutable"/>
+                </argument>
+                <argument id="beforeWait"/>
+                <argument id="autoRetry"/>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" isTitleUpdated="true" name="UiWithScreen" testItemId="157" title="Gmail_Validation">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.DAZNPage"/>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On DAZNPage page</value>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Always</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">full</value>
+        </argument>
+        <argument id="uiTargetUrl">
+          <value class="value" valueClass="string">https://my.dazn.com/help/JP-en_GB/privacy</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="158">
+          <steps/>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="159" title="On Dazn_help_privacyPage page">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">DAZN</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.Dazn_help_privacyPage"/>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Dont</value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On Dazn_help_privacyPage page</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="uiTargetUrl"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="164">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" name="UiAssert" testItemId="169" title="UI Assert">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Values</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiPageAssertion/>
+                  </value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="Dazn_help_privacyPage_Privacy__Lable">
+                      <fieldLocator uri="ui:pageobject:field?field=Dazn_help_privacyPage_Privacy__Lable&amp;pageId=pageobjects.Dazn_help_privacyPage"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="visible" comparisonType="EqualTo">
+                          <value class="value" valueClass="boolean">true</value>
+                        </uiAttributeAssertion>
+                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" mutable="Mutable"/>
+                </argument>
+                <argument id="beforeWait"/>
+                <argument id="autoRetry"/>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+</testCase>

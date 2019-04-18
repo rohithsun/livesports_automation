@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="Navigating to DAZN">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Navigating to DAZN</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="3">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="137" title="For Each: {SourceData}=&gt;DataRow">
+              <arguments>
+                <argument id="list">
+                  <value class="variable">
+                    <path element="SourceData"/>
+                  </value>
+                </argument>
+                <argument id="fromItem">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="valueName">
+                  <value class="value" valueClass="string">DataRow</value>
+                </argument>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="SourceData" variableScope="Test">
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo" whereName="TC_Status" whereValue="{used}">
+                    <workbookPath class="compound">
+                      <parts>
+                        <value valueClass="string">Templates/common_prerequisite_data_</value>
+                        <variable>
+                          <path element="BatchNo"/>
+                        </variable>
+                        <value valueClass="string">.xlsx</value>
+                      </parts>
+                    </workbookPath>
+                    <worksheetName class="variable">
+                      <path element="CountryCode"/>
+                    </worksheetName>
+                    <valuesRange class="value"/>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="substeps" testItemId="138">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="136" title="Set Values: Password">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Email</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="DataRow"/>
+                                  <path element="Email"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Password</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">12345</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <caseCall testCaseId="0ebf275b-f67f-40f2-94da-c58a845f313e" testCasePath="tests/Reusable Functions/DAZN/Callable_multiple_browser_inprivate.testcase" testItemId="185">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="variable">
+                            <path element="MultipleLogin"/>
+                          </value>
+                        </argument>
+                        <argument id="Email">
+                          <value class="variable">
+                            <path element="Email"/>
+                          </value>
+                        </argument>
+                        <argument id="Password">
+                          <value class="value" valueClass="string">12345</value>
+                        </argument>
+                      </arguments>
+                    </caseCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="186"/>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="CountryCode" title="CountryCode">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="BatchNo" title="BatchNo">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="used" title="used">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="CountryCode">
+      <value class="variable">
+        <path element="CountryCode"/>
+      </value>
+    </argument>
+    <argument id="BatchNo">
+      <value class="variable">
+        <path element="Batch"/>
+      </value>
+    </argument>
+    <argument id="used">
+      <value class="variable">
+        <path element="used"/>
+      </value>
+    </argument>
+  </args>
+  <tags>
+    <string>disabled</string>
+  </tags>
+</testCase>

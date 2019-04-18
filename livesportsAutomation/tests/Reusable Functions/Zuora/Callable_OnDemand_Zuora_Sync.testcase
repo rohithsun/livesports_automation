@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="3" registryId="663716a9-e089-4c85-8457-a12766508a3c" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="6" title="Salesforce Connect: SalesforceOrg (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="7" title="Set Values: accountIdlist">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">accountIdlist</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="AccountID"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexExecute" name="ApexExecute" testItemId="5" title="Apex Execute">
+      <arguments>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="apexBlock">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">List&lt;Account&gt; accList = [SELECT Id, Name FROM Account WHERE ID IN </value>
+              <variable>
+                <path element="accountIdlist"/>
+              </variable>
+              <value valueClass="string">];\n\nList&lt;Zuora__CustomerAccount__c&gt; billingAccount = [SELECT Id, Zuora__Zuora_Id__c FROM Zuora__CustomerAccount__c WHERE Zuora__Account__c IN :accList];\n\nSet&lt;String&gt; zuoraAccountIdSet = new Set&lt;String&gt;();\nfor(Zuora__CustomerAccount__c bAcc : billingAccount)\n{\n                zuoraAccountIdSet.add(bAcc.Zuora__Zuora_Id__c);\n}\n\nZuora.OnDemandSyncManager syncManager = new Zuora.OnDemandSyncManager();\nsyncManager.syncZuoraObjectIdSet = zuoraAccountIdSet;\nsyncManager.sendRequest();\n</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="results">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="resultName">
+                <value class="value" valueClass="string">ExecuteResult</value>
+              </namedValue>
+              <namedValue name="resultScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+              <namedValue name="regularExpression">
+                <value class="value" valueClass="string">(\\w+)$</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="8" title="Assert: {ExecuteResult} Contains EXECUTION_FINISHED">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="variable">
+            <path element="ExecuteResult"/>
+          </value>
+        </argument>
+        <argument id="actualValue">
+          <value class="value" valueClass="string">EXECUTION_FINISHED</value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">Contains</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage"/>
+      </arguments>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="AccountID" title="AccountID">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="AccountID">
+      <value class="variable">
+        <path element="accountIdlist"/>
+      </value>
+    </argument>
+  </args>
+  <parameterValueSources/>
+</testCase>

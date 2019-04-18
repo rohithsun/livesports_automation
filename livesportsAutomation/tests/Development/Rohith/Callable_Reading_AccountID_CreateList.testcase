@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="53" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="5" title="For Each: {SourceData}=&gt;row">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">row</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData" variableScope="Test">
+          <cacheToken>D:\\WS_JAN22_BKUP\\livesports_automation-master\\Templates\\prerequisite_data.xlsx;1548532151155</cacheToken>
+          <cachedParameters>
+            <apiParam name="AccountID"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="value" valueClass="string">Templates/prerequisite_data.xlsx</workbookPath>
+            <worksheetName class="variable">
+              <path element="Country"/>
+            </worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="substeps" testItemId="6">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="62" title="Set Values: accountIDList.List{UniqueId(2, &quot;NUMERIC&quot;)}">
+              <tags/>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">accountIDList.List</value>
+                            <funcCall id="UniqueId">
+                              <argument id="length">
+                                <value class="value" valueClass="decimal">2</value>
+                              </argument>
+                              <argument id="format">
+                                <value class="value" valueClass="string">NUMERIC</value>
+                              </argument>
+                            </funcCall>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">'</value>
+                            <variable>
+                              <path element="row"/>
+                              <path element="AccountID"/>
+                            </variable>
+                            <value valueClass="string">'</value>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="67" title="Set Values: ACCOUNTID">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">ACCOUNTID</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="compound">
+                  <parts>
+                    <value valueClass="string">(</value>
+                    <variable>
+                      <path element="accountIDList"/>
+                    </variable>
+                    <value valueClass="string">)</value>
+                  </parts>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="68" title="Split: {ACCOUNTID}=&gt;List\\d\\d=&gt;Tokens">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ACCOUNTID"/>
+          </value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">List\\d\\d</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Tokens</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="69" title="Set Values: ID1">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">ID1</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="compound">
+                  <parts>
+                    <value valueClass="string">(</value>
+                    <variable>
+                      <path element="Tokens"/>
+                    </variable>
+                    <value valueClass="string">)</value>
+                  </parts>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="71" title="Replace: {ID1}=&gt;=&gt;ID2">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ID1"/>
+          </value>
+        </argument>
+        <argument id="find">
+          <value class="value" valueClass="string">,,</value>
+        </argument>
+        <argument id="replacement">
+          <value class="value" valueClass="string">,</value>
+        </argument>
+        <argument id="caseInsensitive"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ID2</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="72" title="Replace: {ID2}=&gt;=&gt;ID3">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ID2"/>
+          </value>
+        </argument>
+        <argument id="find">
+          <value class="value" valueClass="string">((</value>
+        </argument>
+        <argument id="replacement">
+          <value class="value" valueClass="string">(</value>
+        </argument>
+        <argument id="caseInsensitive"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ID3</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="73" title="Replace: {ID3}=&gt;=&gt;ID4">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ID3"/>
+          </value>
+        </argument>
+        <argument id="find">
+          <value class="value" valueClass="string">])])</value>
+        </argument>
+        <argument id="replacement">
+          <value class="value" valueClass="string">)</value>
+        </argument>
+        <argument id="caseInsensitive"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ID4</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="74" title="Set Values: accountIdlist">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">accountIdlist</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="ID4"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+  <outputParams>
+    <param name="accountIdlist" title="accountIdlist">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="accountIdlist"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <outputArgs>
+    <outputArgument id="accountIdlist">
+      <name class="value" valueClass="string">accountIdlist</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

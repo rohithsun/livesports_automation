@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="4" registryId="6b657ce0-4a36-4863-8d7a-5599724fce68" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" name="WaitFor" testItemId="68" title="Wait For: {GmailSubscription.messageCount &gt; 0}=&gt;{10}">
+      <tags/>
+      <arguments>
+        <argument id="condition">
+          <value class="gt">
+            <lhs class="variable">
+              <path element="GmailSubscription"/>
+              <path element="messageCount"/>
+            </lhs>
+            <rhs class="value" valueClass="decimal">0</rhs>
+          </value>
+        </argument>
+        <argument id="testAtStart">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="maxIterations">
+          <value class="value" valueClass="decimal">50</value>
+        </argument>
+        <argument id="sleepSecs">
+          <value class="value" valueClass="decimal">10</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="67">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="69" title="Set Values: BodyText">
+      <tags/>
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">BodyText</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="GmailSubscription"/>
+                  <path element="messages"/>
+                  <path element="bodyText"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Match" name="Match" testItemId="80" title="Match: {BodyText}=&gt;\\d+=&gt;URL">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="BodyText"/>
+          </value>
+        </argument>
+        <argument id="regex">
+          <value class="value" valueClass="string">\\d+</value>
+        </argument>
+        <argument id="caseInsensitive">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">URL</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="77" title="Assert: {BodyText} Contains ID">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="variable">
+            <path element="BodyText"/>
+          </value>
+        </argument>
+        <argument id="actualValue">
+          <value class="value" valueClass="string">ID</value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">Contains</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="96" title="Set Values: CaseID">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">CaseID</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="URL">
+                    <filter class="index">
+                      <index valueClass="decimal">0</index>
+                    </filter>
+                  </path>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="GmailSubscription" title="GmailSubscription">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="CaseID" title="CaseID">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="CaseID"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="GmailSubscription">
+      <value class="variable">
+        <path element="GmailSubscription"/>
+      </value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="CaseID">
+      <name class="value" valueClass="string">CaseID</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

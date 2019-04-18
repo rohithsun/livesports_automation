@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="17" registryId="82d72cd2-2ba8-4c03-8409-74a271d4d017" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="1" title="UI Connect: daznmylogin">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">daznmylogin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">daznmylogin</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="926663f7-af51-42e6-a29f-48fafa142aee" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="7" title="On Common_methods_dazn page">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">daznmylogin</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" created="0" updated="0" uri="ui:pageobject:target?pageId=pageobjects.Common_methods_dazn"/>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On Common_methods_dazn page</value>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Dont</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="uiTargetUrl"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="8">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="9" title="Call the Select_Dazn_ContactUs_Dropdown method">
+              <arguments>
+                <argument id="locator">
+                  <value class="uiLocator" uri="ui:pageobject:method?operation=Select_Dazn_ContactUs_Dropdown&amp;pageId=pageobjects.Common_methods_dazn"/>
+                </argument>
+                <argument id="interaction">
+                  <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                </argument>
+                <argument id="interactionDescription">
+                  <value class="value" valueClass="string">Call the Select_Dazn_ContactUs_Dropdown method</value>
+                </argument>
+                <argument id="beforeWait"/>
+                <argument id="afterWait"/>
+                <argument id="autoRetry"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument argId="95da8cc3-9ce7-45dd-b5ea-748e03766a5a" id="param_cs_accounttype">
+                  <value class="variable">
+                    <path element="cs_accounttype"/>
+                  </value>
+                </argument>
+                <argument argId="54e6dbd3-278e-4ff0-a8b5-45af295b9e3f" id="param_cs_subject">
+                  <value class="variable">
+                    <path element="cs_subject"/>
+                  </value>
+                </argument>
+                <argument argId="ee011c3d-e6d7-46a9-8f7b-fa2fd4fa5c1c" id="param_cs_topic">
+                  <value class="variable">
+                    <path element="cs_topic"/>
+                  </value>
+                </argument>
+                <argument argId="4f9adbe6-dbe3-4667-bbe7-939636ffb251" id="param_cs_query">
+                  <value class="variable">
+                    <path element="cs_query"/>
+                  </value>
+                </argument>
+                <argument argId="7cd04a78-00ad-4df5-a7c8-54e22c1480ea" id="param_cs_emailaddress">
+                  <value class="variable">
+                    <path element="cs_emailaddress"/>
+                  </value>
+                </argument>
+                <argument argId="e0ac0374-d4e3-4c64-a37a-a049d3dbd04c" id="param_cs_comment">
+                  <value class="variable">
+                    <path element="cs_comment"/>
+                  </value>
+                </argument>
+              </arguments>
+              <generatedParameters>
+                <apiParam group="value" name="param_cs_accounttype" title="cs_accounttype">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_cs_subject" seq="1" title="cs_subject">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_cs_topic" seq="2" title="cs_topic">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_cs_query" seq="3" title="cs_query">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_cs_emailaddress" seq="4" title="cs_emailaddress">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_cs_comment" seq="5" title="cs_comment">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:95da8cc3-9ce7-45dd-b5ea-748e03766a5a" name="cs_accounttype" title="cs_accounttype">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:54e6dbd3-278e-4ff0-a8b5-45af295b9e3f" name="cs_subject" title="cs_subject">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:ee011c3d-e6d7-46a9-8f7b-fa2fd4fa5c1c" name="cs_topic" title="cs_topic">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:4f9adbe6-dbe3-4667-bbe7-939636ffb251" name="cs_query" title="cs_query">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:7cd04a78-00ad-4df5-a7c8-54e22c1480ea" name="cs_emailaddress" title="cs_emailaddress">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:e0ac0374-d4e3-4c64-a37a-a049d3dbd04c" name="cs_comment" title="cs_comment">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:926663f7-af51-42e6-a29f-48fafa142aee" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">uiConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="cs_accounttype">
+      <value class="value" valueClass="string">Yes, I have a DAZN account</value>
+    </argument>
+    <argument id="cs_subject">
+      <value class="value" valueClass="string">Issue with logging in</value>
+    </argument>
+    <argument id="cs_topic">
+      <value class="value" valueClass="string">I'm prevented from logging in</value>
+    </argument>
+    <argument id="cs_query">
+      <value class="value" valueClass="string">My payment failed and I can't log-in</value>
+    </argument>
+    <argument id="cs_emailaddress">
+      <value class="value" valueClass="string">abc@gmail.com</value>
+    </argument>
+    <argument id="cs_comment">
+      <value class="value" valueClass="string">test123</value>
+    </argument>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reusecs"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2" registryId="b49f2181-2de3-4875-9526-58a79d49f11d" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="5" title="For Each: {SourceData}=&gt;row">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">row</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData" variableScope="Test">
+          <cacheToken>D:\\WS_JAN22_BKUP\\livesports_automation-master\\Templates\\prerequisite_data.xlsx;1548532151155</cacheToken>
+          <cachedParameters>
+            <apiParam name="AccountID"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="compound">
+              <parts>
+                <value valueClass="string">Templates/common_prerequisite_data_</value>
+                <variable>
+                  <path element="BatchNo"/>
+                </variable>
+                <value valueClass="string">.xlsx</value>
+              </parts>
+            </workbookPath>
+            <worksheetName class="variable">
+              <path element="Country"/>
+            </worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="substeps" testItemId="6">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="62" title="Set Values: accountIDList.List{UniqueId(2, &quot;NUMERIC&quot;)}">
+              <tags/>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">accountIDList.List</value>
+                            <funcCall id="UniqueId">
+                              <argument id="length">
+                                <value class="value" valueClass="decimal">2</value>
+                              </argument>
+                              <argument id="format">
+                                <value class="value" valueClass="string">NUMERIC</value>
+                              </argument>
+                            </funcCall>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">'</value>
+                            <variable>
+                              <path element="row"/>
+                              <path element="Email"/>
+                            </variable>
+                            <value valueClass="string">'</value>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="67" title="Set Values: ACCOUNTID">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">ACCOUNTID</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="compound">
+                  <parts>
+                    <value valueClass="string">(</value>
+                    <variable>
+                      <path element="accountIDList"/>
+                    </variable>
+                    <value valueClass="string">)</value>
+                  </parts>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="68" title="Split: {ACCOUNTID}=&gt;List\\d\\d=&gt;Tokens">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ACCOUNTID"/>
+          </value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">List\\d\\d</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Tokens</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="69" title="Set Values: ID1">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">ID1</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="compound">
+                  <parts>
+                    <value valueClass="string">(</value>
+                    <variable>
+                      <path element="Tokens"/>
+                    </variable>
+                    <value valueClass="string">)</value>
+                  </parts>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="71" title="Replace: {ID1}=&gt;=&gt;ID2">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ID1"/>
+          </value>
+        </argument>
+        <argument id="find">
+          <value class="value" valueClass="string">,,</value>
+        </argument>
+        <argument id="replacement">
+          <value class="value" valueClass="string">,</value>
+        </argument>
+        <argument id="caseInsensitive"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ID2</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="72" title="Replace: {ID2}=&gt;=&gt;ID3">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ID2"/>
+          </value>
+        </argument>
+        <argument id="find">
+          <value class="value" valueClass="string">((</value>
+        </argument>
+        <argument id="replacement">
+          <value class="value" valueClass="string">(</value>
+        </argument>
+        <argument id="caseInsensitive"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ID3</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Replace" name="Replace" testItemId="73" title="Replace: {ID3}=&gt;=&gt;ID4">
+      <arguments>
+        <argument id="input">
+          <value class="variable">
+            <path element="ID3"/>
+          </value>
+        </argument>
+        <argument id="find">
+          <value class="value" valueClass="string">])])</value>
+        </argument>
+        <argument id="replacement">
+          <value class="value" valueClass="string">)</value>
+        </argument>
+        <argument id="caseInsensitive"/>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ID4</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="74" title="Set Values: EmailIdlist">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">EmailIdlist</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="ID4"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="Country" title="Country">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="BatchNo" title="BatchNo">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="EmailIdlist" title="EmailIdlist">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="EmailIdlist"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="Country">
+      <value class="variable">
+        <path element="Country"/>
+      </value>
+    </argument>
+    <argument id="BatchNo">
+      <value class="variable">
+        <path element="BatchNo"/>
+      </value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="accountIdlist">
+      <name class="value" valueClass="string">accountIdlist</name>
+    </outputArgument>
+    <outputArgument id="EmailIdlist">
+      <name class="value" valueClass="string">EmailIdlist</name>
+    </outputArgument>
+    <outputArgument id="SourceData">
+      <name class="value" valueClass="string">SourceData</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

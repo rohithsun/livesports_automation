@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="86" title="UI Connect: daznmylogin">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">daznmylogin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">daznmylogin</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="privateBrowsingMode"/>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="90" title="For Each: {SourceData}=&gt;DataRow">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">DataRow</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData" variableScope="Test">
+          <cacheToken>D:\\WS_FEB04\\livesports_automation-master\\Templates\\common_prerequisite_data.xlsx;1549325457153</cacheToken>
+          <cachedParameters>
+            <apiParam name="TC_Status"/>
+            <apiParam name="AccountID"/>
+            <apiParam name="FirstName"/>
+            <apiParam name="LastName"/>
+            <apiParam name="AccountName"/>
+            <apiParam name="Email"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo" whereName="TC_Status" whereValue="{used}">
+            <workbookPath class="compound">
+              <parts>
+                <value valueClass="string">Templates/common_prerequisite_data_</value>
+                <variable>
+                  <path element="BatchNo"/>
+                </variable>
+                <value valueClass="string">.xlsx</value>
+              </parts>
+            </workbookPath>
+            <worksheetName class="variable">
+              <path element="CountryCode"/>
+            </worksheetName>
+            <valuesRange class="value"/>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="substeps" testItemId="2">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="4" title="If: {Count(DataRow) &gt; 0}">
+              <arguments>
+                <argument id="condition">
+                  <value class="gt">
+                    <lhs class="funcCall" id="Count">
+                      <argument id="value">
+                        <value class="variable">
+                          <path element="DataRow"/>
+                        </value>
+                      </argument>
+                    </lhs>
+                    <rhs class="value" valueClass="decimal">0</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="5">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="145" title="If: {$CountryCode = &quot;de&quot; OR $CountryCode = &quot;ca&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="or">
+                            <lhs class="eq">
+                              <lhs class="variable" topLevel="true">
+                                <path element="CountryCode"/>
+                              </lhs>
+                              <rhs class="value" valueClass="string">de</rhs>
+                            </lhs>
+                            <rhs class="eq">
+                              <lhs class="variable" topLevel="true">
+                                <path element="CountryCode"/>
+                              </lhs>
+                              <rhs class="value" valueClass="string">ca</rhs>
+                            </rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="208">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="209" title="Set Values: NameValue">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">NameValue</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <variable>
+                                              <path element="DataRow"/>
+                                              <path element="FirstName"/>
+                                            </variable>
+                                            <value valueClass="string"> </value>
+                                            <variable>
+                                              <path element="DataRow"/>
+                                              <path element="LastName"/>
+                                            </variable>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                        <clause name="else" testItemId="210">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="211" title="Set Values: NameValue">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">NameValue</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <variable>
+                                              <path element="DataRow"/>
+                                              <path element="LastName"/>
+                                            </variable>
+                                            <value valueClass="string"> </value>
+                                            <variable>
+                                              <path element="DataRow"/>
+                                              <path element="FirstName"/>
+                                            </variable>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="94" title="Email">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Email</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="DataRow"/>
+                                  <path element="Email"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="212" title="If: {$CountryCode = &quot;ca&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable" topLevel="true">
+                              <path element="CountryCode"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">ca</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="213">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="214" title="NextPayementValue">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">NextPayementValue</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="funcCall" id="DateFormat">
+                                          <argument id="date">
+                                            <value class="funcCall" id="DateAdd">
+                                              <argument id="date">
+                                                <value class="variable">
+                                                  <path element="TODAY"/>
+                                                </value>
+                                              </argument>
+                                              <argument id="amount">
+                                                <value class="value" valueClass="decimal">1</value>
+                                              </argument>
+                                              <argument id="unit">
+                                                <value class="variable">
+                                                  <path element="YEAR"/>
+                                                </value>
+                                              </argument>
+                                            </value>
+                                          </argument>
+                                          <argument id="outputFormat">
+                                            <value class="value" valueClass="string">dd/MM/yyyy</value>
+                                          </argument>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="217" title="SubscriptionMessageRenewal">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">SubscriptionMessageRenewal</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="value" valueClass="string">Your subscriptions autorenews annually (except for first time subscribers in Quebec), unless cancelled.</value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                        <clause name="else" testItemId="215">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="216" title="NextPayementValue">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">NextPayementValue</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="funcCall" id="DateFormat">
+                                          <argument id="date">
+                                            <value class="funcCall" id="DateAdd">
+                                              <argument id="date">
+                                                <value class="variable">
+                                                  <path element="TODAY"/>
+                                                </value>
+                                              </argument>
+                                              <argument id="amount">
+                                                <value class="value" valueClass="decimal">1</value>
+                                              </argument>
+                                              <argument id="unit">
+                                                <value class="variable">
+                                                  <path element="MONTH"/>
+                                                </value>
+                                              </argument>
+                                            </value>
+                                          </argument>
+                                          <argument id="outputFormat">
+                                            <value class="value" valueClass="string">yyyy/MM/dd</value>
+                                          </argument>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="218" title="SubscriptionMessageRenewal">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">SubscriptionMessageRenewal</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="value" valueClass="string">Your subscription will automatically renew each month. You can cancel monthly.</value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="151" title="Read Common Test Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Common Test Data</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="152">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="102" title="MyAccountLabel">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">MyaccountLabel</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="ExcelData"/>
+                                          <path element="MyaccountLabel"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="ExcelData" variableScope="Test">
+                                  <cacheToken>D:/livesports_automation-master-feb15_V1/livesports_automation-master-feb15/Templates/commonTestData.xlsx;1551437496227</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="Funtionality"/>
+                                    <apiParam name="TestCaseName"/>
+                                    <apiParam name="GettingStarted_Article"/>
+                                    <apiParam name="TroubleShooting_Article"/>
+                                    <apiParam name="ContentApp_Article"/>
+                                    <apiParam name="AccountPayment_Article"/>
+                                    <apiParam name="CVV_ValidationMessage"/>
+                                    <apiParam name="CardNumber_Validation"/>
+                                    <apiParam name="ValidSearch"/>
+                                    <apiParam name="InvalidText"/>
+                                    <apiParam name="ValidSubject"/>
+                                    <apiParam name="InValidSubject"/>
+                                    <apiParam name="BackToHome"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo" whereName="TestCaseName" whereValue="TC_11_30_MY ACCOUNT Details_Active Paid">
+                                    <workbookPath class="value" valueClass="string">Templates/commonTestData.xlsx</workbookPath>
+                                    <worksheetName class="compound">
+                                      <parts>
+                                        <value valueClass="string">en_</value>
+                                        <variable>
+                                          <path element="CountryCode"/>
+                                        </variable>
+                                      </parts>
+                                    </worksheetName>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="103" title="LanguageMessage">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">LanguageMessage</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="ExcelData"/>
+                                          <path element="LanguageMessage"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="104" title="LANGUAGELabel">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">LanguageLabel</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="ExcelData"/>
+                                          <path element="LanguageLabel"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="156" title="SubscriptionPriceValue">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">SubscriptionPriceValue</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="ExcelData"/>
+                                          <path element="SubscriptionPriceValue"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="98" title="SubscriptionMessage1">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">SubscriptionMessage1</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">Please note, any changes made to your account may take up to two hours to show on this page.</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="99" title="PaymentmethodValue">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">PaymentmethodValue</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">MasterCard **** **** **** 7082</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="100" title="EmailcheckBox1">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">EmailcheckBox1</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">Send me exclusive content &amp; news from DAZN and other companies within the Perform Group. You can unsubscribe at any time. You can contact DAZN here: https://tinyurl.com/EN-DAZN</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="101" title="Password">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">Password</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">p12345</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="105" title="Set Values: AccountStatus">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">AccountStatus</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="DataRow"/>
+                                  <path element="AccountStatus"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="106" title="LastPaymentValue">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">LastPaymentMadeValue</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">¥1,890 on </value>
+                                    <funcCall id="DateFormat">
+                                      <argument id="date">
+                                        <value class="funcCall" id="DateAdd">
+                                          <argument id="date">
+                                            <value class="variable">
+                                              <path element="TODAY"/>
+                                            </value>
+                                          </argument>
+                                          <argument id="amount">
+                                            <value class="value" valueClass="decimal">0</value>
+                                          </argument>
+                                        </value>
+                                      </argument>
+                                      <argument id="outputFormat">
+                                        <value class="value" valueClass="string">yyyy/MM/dd</value>
+                                      </argument>
+                                    </funcCall>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="107" title="Siging to Dazn Page">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Siging to Dazn Page</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="108">
+                          <steps>
+                            <caseCall testCaseId="3a31e045-cd14-4432-ac75-4a3f72a14885" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_Signin.testcase" testItemId="109">
+                              <tags>
+                                <string>disabled</string>
+                              </tags>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="Email">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                                <argument id="Password">
+                                  <value class="variable">
+                                    <path element="Password"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="1d52f587-5ae3-4245-9e9d-10ec2d40a9ea" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_HomeMenu_dropdown.testcase" testItemId="110">
+                              <tags>
+                                <string>disabled</string>
+                              </tags>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="3c614e86-83ac-45e7-ada3-2102d9be4800" testCasePath="tests/Reusable Functions/DAZN/Callable_MyLogin_Page.testcase" testItemId="111">
+                              <tags>
+                                <string>disabled</string>
+                              </tags>
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="Email">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                                <argument id="Password">
+                                  <value class="variable">
+                                    <path element="Password"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="c4a4ec04-ec64-4a07-8d26-39a2b0809b89" testCasePath="tests/Reusable Functions/DAZN/Callable_Japan_MyLogin_Page.testcase" testItemId="112">
+                              <arguments>
+                                <argument id="Email">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="Password">
+                                  <value class="variable">
+                                    <path element="Password"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="113" title="Validating the Personal Details on My Account Page">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Validating the Personal Details on My Account Page</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="114">
+                          <steps>
+                            <caseCall testCaseId="ec660f0f-a538-420c-b0f6-4f206f94fb0d" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_MyAccPage_VerifySections_PersonalDetails.testcase" testItemId="115">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="NameValue">
+                                  <value class="variable">
+                                    <path element="NameValue"/>
+                                  </value>
+                                </argument>
+                                <argument id="Email">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="116" title="Validating the Subscription Details">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Validating the Subscription Details</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="117">
+                          <steps>
+                            <caseCall testCaseId="f8ed6a8e-6277-4612-8c2e-24df8f6de7c8" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_MyAccPage_VerifySections_Subscriptions_ActivePaid.testcase" testItemId="118">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="SubscriptionPriceValue">
+                                  <value class="variable">
+                                    <path element="SubscriptionPriceValue"/>
+                                  </value>
+                                </argument>
+                                <argument id="NextPayementValue">
+                                  <value class="variable">
+                                    <path element="NextPayementValue"/>
+                                  </value>
+                                </argument>
+                                <argument id="SubscriptionMessageRenewal">
+                                  <value class="variable">
+                                    <path element="SubscriptionMessageRenewal"/>
+                                  </value>
+                                </argument>
+                                <argument id="SubscriptionMessage1">
+                                  <value class="variable">
+                                    <path element="SubscriptionMessage1"/>
+                                  </value>
+                                </argument>
+                                <argument id="PaymentmethodValue">
+                                  <value class="variable">
+                                    <path element="PaymentmethodValue"/>
+                                  </value>
+                                </argument>
+                                <argument id="LastPaymentMadeValue">
+                                  <value class="variable">
+                                    <path element="LastPaymentMadeValue"/>
+                                  </value>
+                                </argument>
+                                <argument id="AccountStatus">
+                                  <value class="variable">
+                                    <path element="AccountStatus"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="119" title="Validating the Email Preferences">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Validating the Email Preferences</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="120">
+                          <steps>
+                            <caseCall testCaseId="7c03613b-21cc-4bb1-afc4-a58b38728b93" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_MyAccPage_VerifySections_EMAIL Preference.testcase" testItemId="121">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="122" title="Validating the Language Details">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Validating the Language Details</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="123">
+                          <steps>
+                            <caseCall testCaseId="f7f93d67-69c9-48a4-9b53-f91c897aaaa5" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_MyAccPage_VerifySections_Language.testcase" testItemId="124">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="LanguageLabel">
+                                  <value class="variable">
+                                    <path element="LanguageLabel"/>
+                                  </value>
+                                </argument>
+                                <argument id="MyaccountLabel">
+                                  <value class="variable">
+                                    <path element="MyaccountLabel"/>
+                                  </value>
+                                </argument>
+                                <argument id="LanguageMessage">
+                                  <value class="variable">
+                                    <path element="LanguageMessage"/>
+                                  </value>
+                                </argument>
+                                <argument id="CountryCode">
+                                  <value class="variable">
+                                    <path element="CountryCode"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="125" title="Validating the footer Links">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Validating the footer Links</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="126">
+                          <steps>
+                            <caseCall testCaseId="ce29d650-e231-4cd9-a56f-6f9558920c10" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_MyAccPage_VerifyFooterLinks.testcase" testItemId="127">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="Email">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                                <argument id="Password">
+                                  <value class="variable">
+                                    <path element="Password"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="128" title="Navigating to My accountPage">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Navigating to My accountPage</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="129">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="130" title="On Dazn_myaccountPage page">
+                              <arguments>
+                                <argument id="uiConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="target">
+                                  <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.Dazn_myaccountPage"/>
+                                </argument>
+                                <argument id="targetDescription">
+                                  <value class="value" valueClass="string">On Dazn_myaccountPage page</value>
+                                </argument>
+                                <argument id="navigate">
+                                  <value class="value" valueClass="string">Always</value>
+                                </argument>
+                                <argument id="windowSelection">
+                                  <value class="value" valueClass="string">Default</value>
+                                </argument>
+                                <argument id="windowSize">
+                                  <value class="value" valueClass="string">Default</value>
+                                </argument>
+                                <argument id="closeWindow"/>
+                                <argument id="captureBefore">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="captureAfter">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="uiTargetUrl"/>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="131">
+                                  <steps>
+                                    <caseCall testCaseId="1d52f587-5ae3-4245-9e9d-10ec2d40a9ea" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_HomeMenu_dropdown.testcase" testItemId="132">
+                                      <tags>
+                                        <string>disabled</string>
+                                      </tags>
+                                      <arguments>
+                                        <argument id="reuseConnectionName">
+                                          <value class="value" valueClass="string">daznmylogin</value>
+                                        </argument>
+                                      </arguments>
+                                    </caseCall>
+                                    <caseCall testCaseId="c4a4ec04-ec64-4a07-8d26-39a2b0809b89" testCasePath="tests/Reusable Functions/DAZN/Callable_Japan_MyLogin_Page.testcase" testItemId="133">
+                                      <arguments>
+                                        <argument id="Email">
+                                          <value class="variable">
+                                            <path element="Email"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="reuseConnectionName">
+                                          <value class="value" valueClass="string">daznmylogin</value>
+                                        </argument>
+                                        <argument id="Password">
+                                          <value class="variable">
+                                            <path element="Password"/>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </caseCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                              <generatedParameters>
+                                <apiParam group="target" name="uiTargetUrl" title="Web Page">
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="134" title="Validating the Sign Out devices">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Validating the Sign Out devices</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="135">
+                          <steps>
+                            <caseCall testCaseId="754c6858-eb50-4683-8c6a-116fdb52d500" testCasePath="tests/Reusable Functions/DAZN/Callable_Dazn_SIGN_OUT_OF_ALL_DEVICES_Validations.testcase" testItemId="136">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="c4a4ec04-ec64-4a07-8d26-39a2b0809b89" testCasePath="tests/Reusable Functions/DAZN/Callable_Japan_MyLogin_Page.testcase" testItemId="137">
+                              <arguments>
+                                <argument id="Email">
+                                  <value class="variable">
+                                    <path element="Email"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="Password">
+                                  <value class="variable">
+                                    <path element="Password"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <caseCall testCaseId="d21686d8-2a53-4bd6-be45-50d127214a0b" testCasePath="tests/Reusable Functions/DAZN/Callable_DaznPage_change language en it.testcase" testItemId="138">
+                              <arguments>
+                                <argument id="reuseConnectionName_lang">
+                                  <value class="value" valueClass="string">daznmylogin</value>
+                                </argument>
+                                <argument id="CountryCode">
+                                  <value class="variable">
+                                    <path element="CountryCode"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <caseCall testCaseId="8d0dfc20-7e86-441c-822e-b126316d26c7" testCasePath="tests/Development/Rohith/Callable_Record_Update.testcase" testItemId="91">
+                      <arguments>
+                        <argument id="RecordStatus">
+                          <value class="value" valueClass="string">Used</value>
+                        </argument>
+                        <argument id="CountryCode">
+                          <value class="variable">
+                            <path element="CountryCode"/>
+                          </value>
+                        </argument>
+                        <argument id="RecordEmail">
+                          <value class="variable">
+                            <path element="DataRow"/>
+                            <path element="Email"/>
+                          </value>
+                        </argument>
+                        <argument id="BatchNo">
+                          <value class="variable">
+                            <path element="BatchNo"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="used" scope="Folder">
+                          <name class="value" valueClass="string">used</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="3"/>
+                  </steps>
+                </clause>
+                <clause name="else" testItemId="9">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="92" title="Fail Test: Test Data Not Found">
+                      <arguments>
+                        <argument id="message">
+                          <value class="value" valueClass="string">Test Data Not Found</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="CountryCode" title="CountryCode">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="BatchNo" title="BatchNo">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="used" title="used">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="CountryCode">
+      <value class="variable">
+        <path element="CountryCode"/>
+      </value>
+    </argument>
+    <argument id="BatchNo">
+      <value class="variable">
+        <path element="Batch"/>
+      </value>
+    </argument>
+    <argument id="used">
+      <value class="variable">
+        <path element="used"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

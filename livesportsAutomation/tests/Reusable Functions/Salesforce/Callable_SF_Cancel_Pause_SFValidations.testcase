@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="1" registryId="d38f7bb4-4262-481e-95f6-57bd5babb7ff" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SalesforceOrg (Test)">
+      <arguments>
+        <argument argId="12b0c1ae-86b2-45f4-a659-ee221b814685" id="connectionName">
+          <value class="variable">
+            <path element="SalesforceOrg"/>
+          </value>
+        </argument>
+        <argument argId="615d64bc-8283-4c69-8e2f-87075ca11afb" id="resultName">
+          <value class="value" valueClass="string">SalesforceOrg</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="5fc7dab0-2e98-4b5d-ad2e-90146e50566d" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <caseCall testCaseId="d184a615-6583-45e8-8be4-2a69b50b52c4" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_PauseAccount_SFValidations.testcase" testItemId="37">
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="variable">
+            <path element="PauseAccount"/>
+          </value>
+        </argument>
+        <argument id="NextChargeDate">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="NextChargeDate"/>
+          </value>
+        </argument>
+        <argument id="PauseUntil">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="PauseUntil"/>
+          </value>
+        </argument>
+        <argument id="PauseFrom">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="PauseFrom"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="f77af608-969d-4ace-8366-8b6aa2472d72" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_AccountPage_RelList_EmailSyncQueues_verify.testcase" testItemId="38">
+      <arguments>
+        <argument id="EmailStatus">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="EmailStatus"/>
+          </value>
+        </argument>
+        <argument id="DispatchID">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="DispatchID"/>
+          </value>
+        </argument>
+        <argument id="EmailName">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="EmailName"/>
+          </value>
+        </argument>
+        <argument id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuse_emailsync"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="50b82f7b-150c-4d34-99d9-06b9a3ec9f0c" testCasePath="tests/Reusable Functions/Salesforce/Callable_SF_AccountPage_RelList_PauseHistory_verify.testcase" testItemId="39">
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuse_pause"/>
+          </value>
+        </argument>
+        <argument id="PauseStatus">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="PauseStatus"/>
+          </value>
+        </argument>
+        <argument id="PauseFrom">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="PauseFrom"/>
+          </value>
+        </argument>
+        <argument id="PauseUntil">
+          <value class="variable">
+            <path element="DataRow"/>
+            <path element="PauseUntil"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:5fc7dab0-2e98-4b5d-ad2e-90146e50566d" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="CancelPause"/>
+      </value>
+    </argument>
+  </args>
+</testCase>
